@@ -1,0 +1,49 @@
+﻿@model DeckBuilderPro.ViewModels.Interfaces.IListViewModel<DeckBuilderPro.ViewModels.DeckViewModel>
+
+@{
+    ViewBag.Title = "My Decks";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.model.CardCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.model.GameId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.model.FormatId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.ItemList) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Name, "ListDeck", new { id=item.Id })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FormatId)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn-small btn-inverse" })
+        </td>
+    </tr>
+}
+
+</table>

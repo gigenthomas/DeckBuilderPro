@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FCA712B4-C3F9-4350-BE62-2A44551801CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DeckBuilderPro.ViewModels</RootNamespace>
+    <AssemblyName>DeckBuilderPro.ViewModels</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CardTypeViewModel.cs" />
+    <Compile Include="CardViewModel.cs" />
+    <Compile Include="CollectionCardViewModel.cs" />
+    <Compile Include="DeckCardViewModel.cs" />
+    <Compile Include="ViewModelsBuilders\CollectionCardViewModelBuilder.cs" />
+    <Compile Include="CollectionViewModel.cs" />
+    <Compile Include="DeckViewModel.cs" />
+    <Compile Include="DropDownListViewModel.cs" />
+    <Compile Include="GameViewModel.cs" />
+    <Compile Include="Interfaces\IListModelBuilder.cs" />
+    <Compile Include="Interfaces\IListViewModel.cs" />
+    <Compile Include="Interfaces\IModelBuilder.cs" />
+    <Compile Include="ListViewModel.cs" />
+    <Compile Include="ManufacturerViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelsBuilders\CollectionViewModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\DeckCardViewModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\DeckViewModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\DropDownListItemViewModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\GameModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\ListModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\ManufacturerModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\VsSystem_CardModelBuilder.cs" />
+    <Compile Include="VsSystem_CardViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeckBuilderPro.DataManager\DeckBuilderPro.DataManager.csproj">
+      <Project>{16F3DAAC-608E-45BD-A5C7-9BB0EE2F02F3}</Project>
+      <Name>DeckBuilderPro.DataManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeckBuilderPro.Entity\DeckBuilderPro.Entity.csproj">
+      <Project>{06E3957C-23A1-4BD4-9CC9-7E641ADD95FE}</Project>
+      <Name>DeckBuilderPro.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeckBuilderPro.Pager\DeckBuilderPro.Pager.csproj">
+      <Project>{3F24DEB6-D6AD-4C0F-886E-AB1DFAC2EC1C}</Project>
+      <Name>DeckBuilderPro.Pager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMapping\IMapping.csproj">
+      <Project>{97e8eeb4-97d3-4828-869b-881e2192a33d}</Project>
+      <Name>IMapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRepository\IRepository.csproj">
+      <Project>{621D8D8D-166C-4EFA-BBF0-E987F4A93B3C}</Project>
+      <Name>IRepository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

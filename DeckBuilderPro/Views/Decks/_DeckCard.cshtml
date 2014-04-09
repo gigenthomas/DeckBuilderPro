@@ -1,0 +1,15 @@
+﻿@model DeckBuilderPro.Entity.DeckCard
+<div class="row">
+    <div class="span3">
+        @Html.DisplayFor(model => model.Card.Name)
+    </div>
+    <div class="span2">
+        @Html.DisplayFor(model => model.Card.CardIdentifier)
+    </div>
+    <div class="span2">
+        @Html.DisplayNameFor(model => model.CardCount) @Html.DisplayFor(model => model.CardCount)
+    </div>
+    <div class="span2">
+        @Html.DisplayNameFor(model => model.CardsFromCollection) @Html.DisplayFor(model => model.CardsFromCollection)
+    </div>
+</div>

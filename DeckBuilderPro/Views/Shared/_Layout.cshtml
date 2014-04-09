@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-ng-app="@ViewBag.AngularInitModule">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body ng-controller="@ViewBag.Controller">
+        <div class="page rounded-corners">
+            @Html.Partial("_Navigation")
+
+            @RenderSection("featured", required: false)
+
+            <div class="page-body rounded-corners">
+                @RenderBody()
+            </div>
+
+            @Html.Partial("_Footer")
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/Angular")
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

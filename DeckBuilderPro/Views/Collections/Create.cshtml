@@ -1,0 +1,37 @@
+﻿@model DeckBuilderPro.ViewModels.CollectionViewModel
+@{
+    ViewBag.Title = "Create";
+}
+<h2>
+    Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CollectionViewModel</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.GameId, new { @class = "control-label", @for = "Games" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.GameId, new SelectList(@Model.Games, "Id", "Name", 0), new { @class = "span3" })
+                @Html.ValidationMessageFor(model => model.GameId, null, new { @class = "help-inline" })
+            </div>
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

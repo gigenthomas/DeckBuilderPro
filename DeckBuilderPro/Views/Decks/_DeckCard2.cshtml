@@ -1,0 +1,15 @@
+﻿@model DeckBuilderPro.ViewModels.DeckCardViewModel
+<div class="row">
+    <div class="span3">
+        @Html.DisplayFor(model => model.Card.Name)
+    </div>
+    <div class="span2">
+        @Html.DisplayFor(model => model.Card.CardIdentifier)
+    </div>
+    <div class="span2">
+        @Html.DisplayNameFor(model => model.Quantity) @Html.DisplayFor(model => model.Quantity)
+    </div>
+    <div class="span2">
+        @Html.DisplayNameFor(model => model.QuantityFromCollection) @Html.DisplayFor(model => model.QuantityFromCollection)
+    </div>
+</div>

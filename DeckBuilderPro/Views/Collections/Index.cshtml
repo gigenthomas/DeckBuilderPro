@@ -1,0 +1,39 @@
+﻿@model DeckBuilderPro.ViewModels.Interfaces.IListViewModel<DeckBuilderPro.ViewModels.CollectionViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.model.GameId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.ItemList)
+{
+    <tr>
+        <td>
+            @Html.ActionLink(item.Name, "ListCollection", new { id=item.Id })
+        </td>
+        <td>
+            @{ var gameName = from g in Model.model.Games where g.Id == item.GameId select g.Name; }
+            @Html.DisplayFor(modelItem =>  gameName)  
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn-small btn-inverse" })
+        </td>
+    </tr>
+}
+
+</table>

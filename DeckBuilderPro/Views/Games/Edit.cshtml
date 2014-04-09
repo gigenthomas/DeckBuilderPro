@@ -1,0 +1,35 @@
+﻿@model DeckBuilderPro.ViewModels.GameViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="page-sub-title GradientBackground-Title rounded-top">
+    <h4>@ViewBag.Title</h4>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Name)
+            <div class="controls">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        <div class="control-group">
+            @*@ViewData.ModelState.IsValidField(Model.FirstName.*@
+            @Html.LabelFor(model => model.ManufacturerId, new { @class = "control-label", @for = "Manufacturer" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.ManufacturerId, new SelectList(@Model.Manufacturers, "Id", "Name", 0), new { @class = "span3" })
+                @Html.ValidationMessageFor(model => model.ManufacturerId, null, new { @class = "help-inline" })
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Save" class="btn btn-inverse"/>
+        </div>    
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

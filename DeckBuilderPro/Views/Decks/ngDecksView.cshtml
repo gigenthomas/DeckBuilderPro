@@ -1,0 +1,40 @@
+﻿
+
+<h2>My Decks: {{ data.length }}</h2>
+<div class="progress progress-striped active" ng-show="isBusy">
+    <div class="bar" style="width:100%"></div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Card Count
+        </th>
+        <th>
+            Game Id
+        </th>
+        <th>
+            FormatId
+        </th>
+        <th></th>
+    </tr>
+
+    <tr ng-repeat="i in data">
+        <td>
+            {{ i.Name }}
+        </td>
+        <td>
+            {{ i.CardCount }}
+        </td>
+        <td>
+            {{ i.GameId }}
+        </td>
+        <td>
+            {{ i.FormatId }}
+        </td>
+        <td></td>
+    </tr>
+</table>

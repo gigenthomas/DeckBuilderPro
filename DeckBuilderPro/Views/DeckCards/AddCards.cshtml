@@ -1,0 +1,75 @@
+﻿@model DeckBuilderPro.ViewModels.DeckCardViewModel
+
+@{
+    ViewBag.Title = "AddCards";
+}
+
+<h2>AddCards</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>DeckCardViewModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CardIdentifier)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CardIdentifier)
+            @Html.ValidationMessageFor(model => model.CardIdentifier)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Quantity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Quantity)
+            @Html.ValidationMessageFor(model => model.Quantity)
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.DeckId, new { @class = "control-label", @for = "Decks" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.DeckId, new SelectList(@Model.Decks, "Id", "Name", 0), new { @class = "span3" })
+                @Html.ValidationMessageFor(model => model.DeckId, null, new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.CollectionId, new { @class = "control-label", @for = "Collections" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.CollectionId, new SelectList(@Model.Collections, "Id", "Name", 0), new { @class = "span3" })
+                @Html.ValidationMessageFor(model => model.CollectionId, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CheckoutFromCollection)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CheckoutFromCollection)
+            @Html.ValidationMessageFor(model => model.CheckoutFromCollection)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AddToCollection)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AddToCollection)
+            @Html.ValidationMessageFor(model => model.AddToCollection)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

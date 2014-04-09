@@ -1,0 +1,99 @@
+﻿@model DeckBuilderPro.ViewModels.Interfaces.IListViewModel<DeckBuilderPro.ViewModels.VsSystem_CardViewModel>
+
+@{
+    ViewBag.Title = "VS Cards";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-primary" })
+</p>
+@Html.Partial("_PageList", @Model.Pager)
+<table>
+    <tr>
+        <th class="span2">
+            @Html.DisplayNameFor(model => model.model.Name)
+        </th>
+        <th class="span2">
+            @Html.DisplayNameFor(model => model.model.Version)
+        </th>
+        <th class="span2">
+            @Html.DisplayNameFor(model => model.model.CardTypeId)
+        </th>
+        <th class="span2">
+            @Html.DisplayNameFor(model => model.model.CardIdentifier)
+        </th>
+        <th class="span2">
+            @Html.DisplayNameFor(model => model.model.IsReprint)
+        </th>
+        <th class="span2">
+            @Html.DisplayNameFor(model => model.model.Cost)
+        </th>
+        <th class="span2">
+            @Html.DisplayNameFor(model => model.model.Attack)
+        </th>
+        <th class="span2">
+            @Html.DisplayNameFor(model => model.model.Defense)
+        </th>
+        <th class="span1">
+            @Html.DisplayNameFor(model => model.model.HasFlight)
+        </th>
+        <th class="span1">
+            @Html.DisplayNameFor(model => model.model.HasRange)
+        </th>
+        <th class="span1">
+            @Html.DisplayNameFor(model => model.model.IsOngoing)
+        </th>
+        <th class="span2">
+            @Html.DisplayNameFor(model => model.model.RarityId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.ItemList) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Name, "Details", new { id=item.Id })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Version)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardIdentifier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsReprint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Attack)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Defense)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasFlight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasRange)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsOngoing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardRarity.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class="btn btn-primary" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+}
+
+</table>

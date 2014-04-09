@@ -1,0 +1,46 @@
+﻿<div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </a><a class="brand" href="@Url.Action("Index","Home")">Deckbuilder Pro</a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="dropdown" id="menu1"><a class="dropdown-toggle" data-toggle="dropdown"
+                        href="#menu1">Games<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("VS System", "Index", "VsSystem")</li>
+                            <li>@Html.ActionLink("Yugioh", "Index", "Videos")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("References", "About", "Home")</li>
+                    <li class="dropdown" id="menu2"><a class="dropdown-toggle" data-toggle="dropdown"
+                        href="#menu2">Media<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Images", "Index", "Images")</li>
+                            <li>@Html.ActionLink("Videos", "Index", "Videos")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="menu3"><a class="dropdown-toggle" data-toggle="dropdown"
+                        href="#menu3">Manage<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Games", "Index", "Games")</li>
+                            <li>@Html.ActionLink("Manufacturers", "Index", "Manufacturers")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="menu4"><a class="dropdown-toggle" data-toggle="dropdown"
+                        href="#menu4">My Stuff<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Collections", "Index", "Collections")</li>
+                            <li>@Html.ActionLink("Decks", "Index", "Decks")</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav pull-right">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

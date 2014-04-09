@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2A18D72F-0466-4EA6-A2D9-7DFA2C08AD22}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DeckBuilderPro.Data</RootNamespace>
+    <AssemblyName>DeckBuilderPro.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\CardRarityConfiguration.cs" />
+    <Compile Include="Configuration\CardTypeConfiguration.cs" />
+    <Compile Include="Configuration\CollectionCardConfiguration.cs" />
+    <Compile Include="Configuration\CollectionConfiguration.cs" />
+    <Compile Include="Configuration\DeckCardConfiguration.cs" />
+    <Compile Include="Configuration\DeckConfiguration.cs" />
+    <Compile Include="Configuration\FormatConfiguration.cs" />
+    <Compile Include="Configuration\GamesSetConfiguration.cs" />
+    <Compile Include="Configuration\UserConfiguration.cs" />
+    <Compile Include="Configuration\VsSystem_CardRaritiesMap.cs" />
+    <Compile Include="Configuration\VsSystem_CardTextsConfiguration.cs" />
+    <Compile Include="Configuration\VsSystem_TeamAffiliationConfiguration.cs" />
+    <Compile Include="Configuration\CardConfiguration.cs" />
+    <Compile Include="Configuration\GameConfiguration.cs" />
+    <Compile Include="Configuration\ManufacturerConfiguration.cs" />
+    <Compile Include="Configuration\VsSystemCardConfiguration.cs" />
+    <Compile Include="Configuration\VsSystem_CardAttributesConfiguration.cs" />
+    <Compile Include="Configuration\VsSystem_CardConfiguration.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="DataContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeckBuilderPro.Entity\DeckBuilderPro.Entity.csproj">
+      <Project>{06E3957C-23A1-4BD4-9CC9-7E641ADD95FE}</Project>
+      <Name>DeckBuilderPro.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRepository\IRepository.csproj">
+      <Project>{621D8D8D-166C-4EFA-BBF0-E987F4A93B3C}</Project>
+      <Name>IRepository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

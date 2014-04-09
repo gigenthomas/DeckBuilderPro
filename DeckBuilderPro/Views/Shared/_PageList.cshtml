@@ -1,0 +1,26 @@
+﻿@model DeckBuilderPro.Pager.Interfaces.IPager
+<div class="pagination pagination-centered">
+    <ul>
+        @{ var disabled = "";}
+        
+        @if (Model.CurrentPage == 1)
+        {
+            disabled = "disabled";
+        }
+        <li class="@disabled">@Html.ActionLink("<<", "Index", new { page = 1 })</li>
+        <li class="@disabled">@Html.ActionLink("<", "Index", new { page = (Model.CurrentPage - 1) })</li>
+        @foreach (int pages in @Model.GetPagesToDisplay())
+        {
+            var active = "";
+            if (pages == @Model.CurrentPage) { active = "active"; }
+            <li class="@active">@Html.ActionLink(pages.ToString(), "Index", new { page = pages })</li>   
+        }
+        @{disabled = "";}
+        @if (Model.CurrentPage == @Model.NumberOfPages)
+        {
+            disabled = "disabled";
+        }        
+        <li class="@disabled">@Html.ActionLink(">", "Index", new { page = (@Model.CurrentPage + 1) })</li>
+        <li class="@disabled">@Html.ActionLink(">>", "Index", new { page = @Model.NumberOfPages })</li>
+    </ul>
+</div>
