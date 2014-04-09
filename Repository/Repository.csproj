@@ -58,6 +58,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DeckBuilderPro.Data\DeckBuilderPro.Data.csproj">
+      <Project>{2a18d72f-0466-4ea6-a2d9-7dfa2c08ad22}</Project>
+      <Name>DeckBuilderPro.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{54C2EF31-6B90-483C-B969-1B25DB1D45B4}</Project>
       <Name>Infrastructure</Name>

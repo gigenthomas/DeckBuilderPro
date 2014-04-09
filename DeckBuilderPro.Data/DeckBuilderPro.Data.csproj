@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDataContext.cs" />
     <Compile Include="Configuration\CardRarityConfiguration.cs" />
     <Compile Include="Configuration\CardTypeConfiguration.cs" />
     <Compile Include="Configuration\CollectionCardConfiguration.cs" />

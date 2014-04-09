@@ -48,11 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDataContext.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="IAuditInfo.cs" />
-    <Compile Include="IDbContext.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

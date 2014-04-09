@@ -1,14 +1,14 @@
-﻿using System;
+﻿using IRepository;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.Data;
+using System.Linq;
+using System.Text;
 
-namespace IRepository
+namespace DeckBuilderPro.Data
 {
-    public abstract class BaseDataContext : DbContext, IDbContext
+    public abstract class BaseDataContext : DbContext
     {
         protected BaseDataContext(string nameOrConnectionString)
             : base(nameOrConnectionString)

@@ -26,7 +26,6 @@ namespace DeckBuilderPro.Unity
             var container = new UnityContainer();
 
             container
-               .RegisterType<IDbContext, DataContext>()
                .RegisterType<IUnitOfWork, UnitOfWork>()
                 //.RegisterType(typeof(IMapper<,>), typeof(ViewModelMapper<,>))
                .RegisterType<IMapper<Deck, DeckViewModel>, DeckViewModelMapper>()

@@ -8,15 +8,16 @@ using System.Data.Entity;
 using Infrastructure;
 using IRepository;
 using System.Data.Entity.Infrastructure;
+using DeckBuilderPro.Data;
 
 namespace Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
-        internal IDbContext Context;
+        internal DataContext Context;
         internal IDbSet<TEntity> DbSet;
 
-        public Repository(IDbContext context)
+        public Repository(DataContext context)
         {
             Context = context;
             DbSet = context.Set<TEntity>();

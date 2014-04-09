@@ -5,18 +5,20 @@ using System.Text;
 using System.Collections;
 using Infrastructure;
 using IRepository;
+using DeckBuilderPro.Data;
 
 namespace Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IDbContext _context;
+        private readonly DataContext _context;
 
         private bool _disposed;
         private Hashtable _repositories;
 
-        public UnitOfWork(IDbContext context)
+        public UnitOfWork()
         {
+            var context = new DataContext();
             Guard.ArgumentNotNull(context, "DB Context Repository");
             _context = context;
         }
