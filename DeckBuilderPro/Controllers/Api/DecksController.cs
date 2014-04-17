@@ -15,6 +15,7 @@ using WebMatrix.WebData;
 
 namespace DeckBuilderPro.Controllers.Api
 {
+    [System.Web.Http.Authorize]
     public class DecksController : ApiController
     {
         private IModelBuilder<Deck, DeckViewModel> _modelBuilder;
@@ -53,14 +54,18 @@ namespace DeckBuilderPro.Controllers.Api
 
         }
 
+        
         // POST api/decks
-        public void Post(DeckViewModel value)
+        public DeckViewModel Post(DeckViewModel value)
         {
             var deckEnitity = new Deck();
             deckEnitity.Name = value.Name;
             deckEnitity.GameId = value.GameId;
             deckEnitity.UserId = WebSecurity.GetUserId(User.Identity.Name);
             _dataManager.Create(deckEnitity);
+            var viewModel = _modelBuilder.CreateFrom(deckEnitity);
+            return viewModel;
+
         }
 
         // PUT api/decks/5

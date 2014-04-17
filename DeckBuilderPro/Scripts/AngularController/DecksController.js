@@ -16,31 +16,92 @@ module.config(["$routeProvider", function ($routeProvider) {
         templateUrl: "/Content/AngularTemplates/ngListDeck.html"
     });
 
+    $routeProvider.when("/Deck/:id", {
+        controller: "SingleDeckController",
+        templateUrl: "/Content/AngularTemplates/ngListDeck.html"
+    });
+
 
     $routeProvider.otherwise("/");
 }]);
 
-function DecksController($scope, $http) {
-    $scope.data = [];
-    $scope.isBusy = true;
+module.factory("dataService", function ($http, $q) {
 
-    $http.get("/api/Decks")
-        .then(function (result) {
-            angular.copy(result.data, $scope.data);
-        },
-        function () {
-            alert("Handle Error");
-        })
+    var _decks = [];
+    var _isInit = false;
+
+    var _isReady = function () {
+        return _isInit;
+    }
+
+    var _getDecks = function () {
+
+        var deferred = $q.defer();
+
+        $http.get("/api/Decks")
+            .then(function (result) {
+                angular.copy(result.data, _decks);
+                _isInit = true;
+                deferred.resolve();
+            },
+            function () {
+                //error
+                deferred.reject();
+            });
+
+        return deferred.promise;
+    };
+
+    var _addDeck = function (newDeck) {
+        var deffered = $q.defer();
+
+        $http.post("/api/Decks", newDeck)
+            .then(
+                function (result) {
+                    //success
+                    var newCreatedDeck = result.data;
+                    _decks.splice(0, 0, newCreatedDeck);
+                    deffered.resolve(newCreatedDeck);
+                },
+                function () {
+                    //error
+                    deferred.reject();
+                }
+            )
+        return deffered.promise;
+    };
+
+    return {
+        decks: _decks,
+        getDecks: _getDecks,
+        addDeck: _addDeck,
+        isReady: _isReady
+    };
+});
+
+function DecksController($scope, $http, dataService) {
+    $scope.data = dataService;
+    $scope.isBusy = false;
+
+    if (dataService.isReady() == false) {
+        dataService.getDecks()
+            .then(function () {
+                //success
+                $scope.isBusy = true;
+            },
+            function () {
+                //error
+                alert("Could not load Decks")
+            })
         .then(function () {
             $scope.isBusy = false;
         });
-
+    }
 }
 
-function NewDeckController($scope, $http, $window)
-{
+function NewDeckController($scope, $http, $window, dataService) {
     $scope.newDeck = {};
-    $scope.game = {}; 
+    $scope.game = null;
     $scope.games = [];
 
 
@@ -58,7 +119,7 @@ function NewDeckController($scope, $http, $window)
 
 
     $scope.reqGameId = function () {
-        if ($scope.game && $scope.game.id && $scope.game.id > 0 ) return true;
+        if ($scope.game && $scope.game.id && $scope.game.id > 0) return true;
         return false;
     }
 
@@ -66,19 +127,32 @@ function NewDeckController($scope, $http, $window)
 
     $scope.save = function () {
         $scope.newDeck.GameId = $scope.game.Id;
-        $http.post("/api/Decks", $scope.newDeck)
+
+        dataService.addDeck($scope.newDeck)
             .then(
                 function (result) {
                     //success
-                    var newDeck = result.data;
                     $window.location = "#/"
                 },
                 function () {
                     //error
                     alert("Cannot save the new Deck");
                 }
-            )
-        alert($scope.newDeck.Name);
-        alert($scope.newDeck.GameId);
+            );
     };
+}
+
+function DeckController($scope, $http, $window, $routeParams) {
+    $scope.deck = null;
+
+    $http.get("/api/Deck/" + $routeParams.id)
+        .then(function (result) {
+            angular.copy(result.data, $scope.deck);
+        },
+        function () {
+            alert("Handle Error");
+        })
+        .then(function () {
+            $scope.isBusy = false;
+        });
 }

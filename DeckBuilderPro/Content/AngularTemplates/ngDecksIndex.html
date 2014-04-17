@@ -1,6 +1,6 @@
 ﻿
 
-<h2>My Decks: {{ data.length }}</h2>
+<h2>My Decks: {{ data.decks.length }}</h2>
 <div class="progress progress-striped active" ng-show="isBusy">
     <div class="bar" style="width:100%"></div>
 </div>
@@ -26,9 +26,9 @@
         <th></th>
     </tr>
 
-    <tr ng-repeat="i in data">
+    <tr ng-repeat="i in data.decks">
         <td>
-            {{ i.Name }}
+            <a href="#/Deck/{{ i.Id }}">{{ i.Name }}</a>
         </td>
         <td>
             {{ i.CardCount }}

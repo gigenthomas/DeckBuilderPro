@@ -2,7 +2,7 @@
 
 <form name="newDeckForm" novalidate ng-submit="save()">
     <label for="Name">Name</label>
-    <input type="text" name="Name" ng-model="newDeck.Name" required/>
+    <input type="text" name="Name" ng-model="newDeck.Name" required />
     <span class="error" ng-show="newDeckForm.Name.$error.required">*</span>
     <br/>
         <select name="Game_Id" ng-model="game" ng-options="g.Name for g in games" required>

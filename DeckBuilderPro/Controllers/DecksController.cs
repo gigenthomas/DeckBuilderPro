@@ -12,6 +12,7 @@ using WebMatrix.WebData;
 
 namespace DeckBuilderPro.Controllers
 {
+    [Authorize]
     public class DecksController : Controller
     {
         //
