@@ -14,7 +14,6 @@ using DeckBuilderPro.Models;
 namespace DeckBuilderPro.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //

@@ -142,10 +142,10 @@ function NewDeckController($scope, $http, $window, dataService) {
     };
 }
 
-function DeckController($scope, $http, $window, $routeParams) {
-    $scope.deck = null;
+function SingleDeckController($scope, $http, $window, $routeParams) {
+    $scope.deck = [];
 
-    $http.get("/api/Deck/" + $routeParams.id)
+    $http.get("/api/Decks/" + $routeParams.id)
         .then(function (result) {
             angular.copy(result.data, $scope.deck);
         },
