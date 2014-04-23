@@ -16,6 +16,7 @@ namespace DeckBuilderPro.ViewModels
         public int GameId { get; set; }
         public Nullable<int> FormatId { get; set; }
         public ICollection<DeckCardViewModel> CardsInDeck { get; set; }
+        public ICollection<CardCountItem> CardCountByCardType { get; set; }
         //public ICollection<DeckCard> CardsInDeck { get; set; }
         //public Format Format { get; set; }
         //public Game Game { get; set; }

@@ -54,6 +54,8 @@ namespace DeckBuilderPro.Controllers
                 throw new ArgumentNullException("Deck not Found");
             }
             var viewModel = _modelBuilder.CreateFrom(deck);
+            var cardTypes = (from cd in viewModel.CardsInDeck select cd.Card.CardType).Distinct();
+            viewModel.CardCountByCardType = cardTypes.Select( c => new CardCountItem { CardType = c.Name, CardCount = viewModel.CardsInDeck.Where(e => e.Card.CardTypeId == c.Id).Sum(cd => cd.Quantity)}).ToArray();
             return View(viewModel);
         }
 

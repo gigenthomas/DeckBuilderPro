@@ -18,13 +18,55 @@
         @Html.Partial("_DeckCard2", deckCard);
     }*@
 
-    @foreach (var deckCard in Model.CardsInDeck)
+    <div id="chart_div"></div>
+
+    @foreach (var deckCard in Model.CardsInDeck.OrderBy(m => m.Card.CardType.Name).ThenBy(m => m.Card.Name))
     {
+        if (lastCardType != deckCard.Card.CardType.Name)
+        {
+            var count = Model.CardsInDeck.Where(c => c.Card.CardType.Name == deckCard.Card.CardType.Name).Sum(c => c.Quantity);
+            @Html.Raw("<hr /><h4>" + deckCard.Card.CardType.Name + "<div class='pull-right'>" + count + "</div></h6>" + "<hr />");
+            lastCardType = deckCard.Card.CardType.Name;
+        }
+
         @Html.Partial("_DeckCard2", deckCard);
     }
+        
 
 
+    @{ var cardtypes = (from cd in Model.CardsInDeck select cd.Card.CardType.Name).Distinct();  }
 
+    @section Scripts
+    {
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        // Load the Visualization API and the piechart package.      
+        google.load('visualization', '1.0', { 'packages': ['corechart'] });
+        // Set a callback to run when the Google Visualization API is loaded.      
+        google.setOnLoadCallback(drawChart);
+        // Callback that creates and populates a data table,      
+        // instantiates the pie chart, passes in the data and      
+        // draws it.      
+        function drawChart() {        
+            // Create the data table.        
+            var data = new google.visualization.DataTable();        
+            data.addColumn('string', 'Card Type');        
+            data.addColumn('number', 'Cards');        
+            data.addRows([
+                @foreach(var item in Model.CardCountByCardType )
+                {
+                   @Html.Raw("['" + item.CardType + "'," + item.CardCount + "],");                
+                }
+            ]);
+            // Set chart options        
+            var options = {
+                'title':'Deck by Card Types',                       
+                'width':400,                       
+                'height':300};        
+            // Instantiate and draw our chart, passing in some options.        
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div')); chart.draw(data, options);
+        }    </script>
+    }
 
 </fieldset>
 <br />

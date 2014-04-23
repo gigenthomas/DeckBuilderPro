@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardCountItem.cs" />
     <Compile Include="CardTypeViewModel.cs" />
     <Compile Include="CardViewModel.cs" />
     <Compile Include="CollectionCardViewModel.cs" />
