@@ -6,18 +6,6 @@
 <h2>@Html.DisplayFor(model => model.Name) - ListDeck (@Html.DisplayFor(model => model.CardCount))</h2>
 <fieldset>
     <legend>DeckViewModel</legend>
-    @*@foreach (var deckCard in Model.CardsInDeck.OrderBy(m => m.Card.CardType.Name).ThenBy(m => m.Card.Name))
-    { 
-        if (lastCardType != deckCard.Card.CardType.Name)
-        {
-            var count = Model.CardsInDeck.Where(c => c.Card.CardType.Name == deckCard.Card.CardType.Name).Sum(c => c.CardCount);
-            @Html.Raw("<hr />" + deckCard.Card.CardType.Name + "<div class='badge'>" + count + "</div>" + "<hr />");
-            lastCardType = deckCard.Card.CardType.Name;
-        }
-        
-        @Html.Partial("_DeckCard2", deckCard);
-    }*@
-
     <div id="chart_div"></div>
 
     @foreach (var deckCard in Model.CardsInDeck.OrderBy(m => m.Card.CardType.Name).ThenBy(m => m.Card.Name))
