@@ -1,0 +1,249 @@
+﻿@model DeckBuilderPro.ViewModels.DeckCardViewModel
+
+@{
+    ViewBag.Title = "DeckList";
+    //ViewBag.Controller = "DecksController";
+    ViewBag.AngularInitModule = "DeckList";
+    ViewBag.Controller = "DeckList";
+}
+
+<div ng-show="isBusy" class="progress progress-striped active">
+    <div class="bar" style="width: 100%;"></div>
+</div>
+
+<div ng-hide="isBusy" ng-cloak>
+    <h2>{{ data.deck.Name }} - Deck List ({{ data.deck.CardCount }})
+    
+        <div class="pull-right">
+            <a role="button" class="btn btn-primary" ng-click="updateDeckCount(data.deck.Id)">Fix Count</a>
+            <a href="#addCardsModal" role="button" class="btn btn-primary" data-toggle="modal">Add Cards</a>
+        </div>
+
+    </h2>
+
+    <!-- Button to trigger modal -->
+    <table class="table plottwist">
+        <tr>
+            <th colspan="4">
+                Plot Twists
+                <span class="label pull-right">{{Sum((data.deck.CardsInDeck | filter:PlotTwist))}}</span>
+            </th>
+        </tr>
+
+        <tr ng-repeat="i in data.deck.CardsInDeck | filter:PlotTwist">
+            <td class="span1">
+                {{ i.Card.CardIdentifier }}
+            </td>
+            <td class="span9">
+                {{ i.Card.Name }}
+            </td>
+            <td class="span1">
+                {{ i.Quantity }}
+            </td>
+            <td class="tools">
+                <div class="pull-right">
+                    <i class="icon-edit" ng-click="updateCard(i)"></i>
+                    <i class="icon-remove" ng-click="removeCards(i)"></i>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table character">
+        <tr>
+            <th colspan="4">
+                Characters
+                <span class="label  pull-right">{{Sum((data.deck.CardsInDeck | filter:Character))}}</span>
+            </th>
+        </tr>
+
+        <tr ng-repeat="i in data.deck.CardsInDeck | filter:Character">
+            <td class="span1">
+                {{ i.Card.CardIdentifier }}
+            </td>
+            <td class="span9">
+                {{ i.Card.Name }}
+            </td>
+            <td class="span1">
+                {{ i.Quantity }}
+            </td>
+            <td class="tools">
+                <div class="pull-right">
+                    <i class="icon-edit" ng-click="updateCard(i)"></i>
+                    <i class="icon-remove" ng-click="removeCards(i)"></i>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table equipment">
+        <tr>
+            <th colspan="4">
+                Equipments
+                <span class="label  pull-right">{{Sum((data.deck.CardsInDeck | filter:Equipment))}}</span>
+            </th>
+        </tr>
+
+        <tr ng-repeat="i in data.deck.CardsInDeck | filter:Equipment">
+            <td class="span1">
+                {{ i.Card.CardIdentifier }}
+            </td>
+            <td class="span9">
+                {{ i.Card.Name }}
+            </td>
+            <td class="span1">
+                {{ i.Quantity }}
+            </td>
+            <td class="tools">
+                <div class="pull-right">
+                    <i class="icon-edit" ng-click="updateCard(i)"></i>
+                    <i class="icon-remove" ng-click="removeCards(i)"></i>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table location">
+        <tr>
+            <th colspan="4">
+                Locations
+                <span class="label  pull-right">{{Sum((data.deck.CardsInDeck | filter:Location))}}</span>
+            </th>
+        </tr>
+
+        <tr ng-repeat="i in data.deck.CardsInDeck | filter:Location">
+            <td class="span1">
+                {{ i.Card.CardIdentifier }}
+            </td>
+            <td class="span9">
+                {{ i.Card.Name }}
+            </td>
+            <td class="span1">
+                {{ i.Quantity }}
+            </td>
+            <td class="tools">
+                <div class="pull-right">
+                    <i class="icon-edit" ng-click="updateCard(i)"></i>
+                    <i class="icon-remove" ng-click="removeCards(i.Id)"></i>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <div class="pull-right"><strong>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary", @role = "button" })</strong></div>
+    <br />
+    <br />
+
+    <!-- Add Cards -->
+    <div id="addCardsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <form name="CardsToAddForm" novalidate ng-submit="addCards()">
+            <div class="modal-header">
+                <h3 id="myModalLabel">Add Cards</h3>
+            </div>
+            <div class="modal-body">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CardIdentifier)
+                </div>
+                <div class="editor-field">
+                    <input type="text" name="CardIdentifier" ng-model="newCards.CardIdentifier" required />
+                    <span class="error" ng-show="newDeckForm.CardIdentifier.$error.required">*</span>
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Quantity)
+                </div>
+                <div class="editor-field">
+                    <input type="number" name="Quantity" min="1" ng-model="newCards.Quantity" required />
+                    <span class="error" ng-show="newDeckForm.Quantity.$error.required">*</span>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <select name="Deck_Id" disabled>
+                            <option value="{{ data.deck.Id }}">{{ data.deck.Name }}</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="cancel" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                <input type="submit" class="btn btn-primary" value="Add Cards" ng-disabled="CardsToAddForm.$invalid" />
+            </div>
+        </form>
+
+    </div>
+
+
+
+
+
+
+    <!-- Delete Cards -->
+    <div id="deleteCardsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <form name="DeleteCardForm" novalidate ng-submit="deleteCards(deleteCard.Id)">
+            <div class="modal-header">
+                <h3 id="myModalLabel">Remove Card</h3>
+            </div>
+            <div class="modal-body">
+                Remove Card {{ deleteCard.Card.Name }} from Deck?
+            </div>
+            <div class="modal-footer">
+                <button id="cancel" class="btn" data-dismiss="modal" ng-click="resetDeleteCard()" aria-hidden="true">Cancel</button>
+                <input type="submit" class="btn btn-primary" value="Remove Card" />
+            </div>
+        </form>
+
+    </div>
+
+
+
+
+
+    <!-- Update Cards -->
+    <div id="updateCardModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <form name="CardToUpdateForm" novalidate ng-submit="updateCards()">
+            <div class="modal-header">
+                <h3 id="myModalLabel">Update Card</h3>
+            </div>
+            <div class="modal-body">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CardIdentifier)
+                </div>
+                <div class="editor-field">
+                    <input type="text" name="CardIdentifier" ng-model="updatedCard.CardIdentifier" value="{{ updatedCard.CardIdentifier }}" disabled required />
+                    <span class="error" ng-show="CardToUpdateForm.CardIdentifier.$error.required">*</span>
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Quantity)
+                </div>
+                <div class="editor-field">
+                    <input type="number" name="Quantity" min="1" ng-model="updatedCard.Quantity" value="{{ updatedCard.Quantity }}" required />
+                    <span class="error" ng-show="CardToUpdateForm.Quantity.$error.required">*</span>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <select name="Deck_Id" disabled>
+                            <option value="{{ data.deck.Id }}">{{ data.deck.Name }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                <input type="submit" class="btn btn-primary" value="Update Card" ng-disabled="CardToUpdateForm.$invalid" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+
+    <script type="text/javascript">
+        var DeckId = @Html.Raw(ViewBag.Id);
+    </script>
+    <script src="~/Scripts/AngularController/DeckListController.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

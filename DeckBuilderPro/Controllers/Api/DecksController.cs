@@ -19,8 +19,11 @@ namespace DeckBuilderPro.Controllers.Api
     public class DecksController : ApiController
     {
         private IModelBuilder<Deck, DeckViewModel> _modelBuilder;
+        private readonly IModelBuilder<DeckCard, DeckCardViewModel> _deckCardModelBuilder;
         private IListModelBuilder<DeckViewModel> _listModelBuilder;
         private IDataManager<Deck, DeckBuilderPro.Entity.Enums.DeckEntities> _dataManager;
+        private readonly DeckBuilderPro.DataManager.Interfaces.ICollectionsManager _collectionsManager;
+        private readonly IDecksManager _decksManager;
         
         public DecksController(IDataManager<Deck, Enums.DeckEntities> dataManager, IModelBuilder<Deck, DeckViewModel> modelBuilder, IListModelBuilder<DeckViewModel> listModelBulder)
         {
@@ -73,9 +76,11 @@ namespace DeckBuilderPro.Controllers.Api
         {
         }
 
+        
         // DELETE api/decks/5
         public void Delete(int id)
         {
+            int a = id;
         }
     }
 }

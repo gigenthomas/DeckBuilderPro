@@ -198,6 +198,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\DeckCardsController.cs" />
     <Compile Include="Controllers\Api\DecksController.cs" />
     <Compile Include="Controllers\Api\GamesController.cs" />
     <Compile Include="Controllers\CollectionCardsController.cs" />
@@ -301,6 +302,7 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\AngularController\DeckListController.js" />
     <Content Include="Scripts\AngularController\DecksController.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
@@ -737,6 +739,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Decks\ngDecksView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Decks\DeckList2.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

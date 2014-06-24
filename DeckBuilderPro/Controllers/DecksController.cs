@@ -21,15 +21,22 @@ namespace DeckBuilderPro.Controllers
         private readonly IModelBuilder<Deck, DeckViewModel> _modelBuilder;
         private readonly IListModelBuilder<DeckViewModel> _listModelBuilder;
         private readonly IDataManager<Deck, DeckBuilderPro.Entity.Enums.DeckEntities> _dataManager;
+        private readonly IModelBuilder<DeckCard, DeckCardViewModel> _deckCardModelBuild;
+        private readonly IDecksManager _deckManager;
+
 
         public DecksController(IDataManager<Deck, Enums.DeckEntities> dataManager, 
-            IModelBuilder<Deck, DeckViewModel> modelBuilder
+            IModelBuilder<Deck, DeckViewModel> modelBuilder,
+            IModelBuilder<DeckCard, DeckCardViewModel> deckCardModelBuild
             , IListModelBuilder<DeckViewModel> listModelBulder
+            , IDecksManager deckManager
             )
         {
             _dataManager = dataManager;
             _modelBuilder = modelBuilder;
             _listModelBuilder = listModelBulder;
+            _deckCardModelBuild = deckCardModelBuild;
+            _deckManager = deckManager;
         }
 
         public ActionResult Index(int page = 1)
@@ -45,6 +52,20 @@ namespace DeckBuilderPro.Controllers
         {
             return View();
         }
+
+        public JsonResult UpdateDeckCount(int id)
+        {
+            return Json(_deckManager.UpdateDeckCount(id), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeckList2(int id)
+        {
+            var deckCard = new DeckCard();
+            var model = _deckCardModelBuild.CreateFrom(deckCard);
+            ViewBag.Id = id;
+            return View(model);
+        }
+
 
         public ActionResult ListDeck(int id)
         {

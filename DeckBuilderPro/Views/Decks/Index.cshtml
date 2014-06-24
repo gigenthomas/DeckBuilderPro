@@ -29,7 +29,7 @@
 @foreach (var item in Model.ItemList) {
     <tr>
         <td>
-            @Html.ActionLink(item.Name, "ListDeck", new { id=item.Id })
+            @Html.ActionLink(item.Name, "DeckList2", new { id=item.Id })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CardCount)

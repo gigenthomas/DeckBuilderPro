@@ -78,3 +78,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
     /*background-color:#FFFFFF;*/
 }
 
+.tools
+{
+    cursor: pointer;
+    width: 20px;
+}
+
+.plottwist tr th
+{
+    background-color: #04417a;
+    color: #ffffff;
+}
+
+.character tr th
+{
+    background-color: #4f0707;
+    color: #ffffff;
+}
+
+.location tr th
+{
+    background-color: #034a0b;
+    color: #ffffff;
+}
+
+.equipment tr th
+{
+    background-color: #383a3b;
+    color: #ffffff;
+}

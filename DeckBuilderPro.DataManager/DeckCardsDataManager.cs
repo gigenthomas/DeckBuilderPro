@@ -16,6 +16,16 @@ namespace DeckBuilderPro.DataManager
             : base(unitOfWork)
         {
 
+        
+        }
+
+        public override DeckCard FindById(int id)
+        {
+            IRepository<DeckCard> repository = _unitOfWork.Repository<DeckCard>();
+            var query = repository.Query();
+            query = query.Include(dc => dc.Card.CardType);
+            query.Filter(dc => dc.Id == id);
+            return query.Get().FirstOrDefault();
         }
 
         public override IEnumerable<DeckCard> GetAll(List<Enums.DeckCardEntities> includes = null)

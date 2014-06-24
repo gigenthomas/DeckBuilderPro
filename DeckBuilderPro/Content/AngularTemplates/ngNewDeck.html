@@ -5,7 +5,7 @@
     <input type="text" name="Name" ng-model="newDeck.Name" required />
     <span class="error" ng-show="newDeckForm.Name.$error.required">*</span>
     <br/>
-        <select name="Game_Id" ng-model="game" ng-options="g.Name for g in games" required>
+        <select name="Game_Id" ng-model="game" ng-options=" g.Name for g in games track by g.Id" required>
             <option value="">-- select game --</option>
         </select>
     <span class="error" ng-show="newDeckForm.Game_Id.$error.required">*</span>

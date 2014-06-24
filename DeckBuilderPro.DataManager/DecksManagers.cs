@@ -21,8 +21,76 @@ namespace DeckBuilderPro.DataManager
             _cardManager = cardManager;
         }
 
+        public int UpdateDeckCount(int deckId)
+        {
+            var deck = _deckDataManager.FindById(deckId);
+            deck.CardCount = deck.CardsInDeck.Sum(cid => cid.CardCount);
+            _deckDataManager.Update(deck);
+            return deck.CardCount;
+        }
 
-        public bool AddCardsToDeck(string cardIdentifier, int deckId, int quantity, int quantityFromCollection)
+        public bool DeleteCardFromDeck(int deckCardId)
+        {
+            try
+            {
+                DeckCard myDCard = _deckCardDataManager.GetAll(new List<Enums.DeckCardEntities> { }).Where(c => c.Id == deckCardId).FirstOrDefault();
+                if (myDCard == null)
+                {
+                }
+                else
+                {
+                    var deck = _deckDataManager.FindById(myDCard.DeckId);
+                    if (deck == null)
+                    {
+                        throw new NullReferenceException("Deck Not Found");
+                    }
+                    deck.CardCount -= myDCard.CardCount;
+                    _deckCardDataManager.DeleteById(deckCardId);
+                    _deckDataManager.Update(deck);
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        
+        public bool UpdateCardInDeck(string cardIdentifier, int deckId, int quantity, int quantityFromCollection)
+        {
+            try
+            {
+                var deck = _deckDataManager.FindById(deckId);
+                if (deck == null)
+                {
+                    throw new NullReferenceException("Deck Not Found");
+                }
+
+                var card = _cardManager.LookupCard(cardIdentifier, deck.GameId);
+                DeckCard myDCard = _deckCardDataManager.GetAll(new List<Enums.DeckCardEntities> { }).Where(c => c.CardId == card.Id && c.DeckId == deckId).FirstOrDefault();
+                if (myDCard == null)
+                {
+                    throw new NullReferenceException("Card Not Found");
+                }
+                else
+                {
+
+                    deck.CardCount -= myDCard.CardCount;
+                    myDCard.CardCount = quantity;
+                    deck.CardCount += quantity;
+                    myDCard.CardsFromCollection = quantityFromCollection;
+                    _deckCardDataManager.Update(myDCard);
+                    _deckDataManager.Update(deck);
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public DeckCard AddCardsToDeck(string cardIdentifier, int deckId, int quantity, int quantityFromCollection)
         {
             try
             {
@@ -43,19 +111,22 @@ namespace DeckBuilderPro.DataManager
                     myDCard.CardsFromCollection = quantityFromCollection;
                     _deckCardDataManager.Create(myDCard);
                     deck.CardCount += quantity;
+                    myDCard = _deckCardDataManager.FindById(myDCard.Id);
                     _deckDataManager.Update(deck);
                 }
                 else
                 {
                     myDCard.CardCount += quantity;
                     myDCard.CardsFromCollection += quantityFromCollection;
+                    deck.CardCount += quantity;
                     _deckCardDataManager.Update(myDCard);
+                    _deckDataManager.Update(deck);
                 }
-                return true;
+                return myDCard;
             }
             catch (Exception e)
             {
-                return false;
+                return null;
             }
 
         }

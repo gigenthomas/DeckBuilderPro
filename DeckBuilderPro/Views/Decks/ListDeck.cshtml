@@ -43,7 +43,7 @@
             data.addRows([
                 @foreach(var item in Model.CardCountByCardType )
                 {
-                   @Html.Raw("['" + item.CardType + "'," + item.CardCount + "],");                
+                   @Html.Raw("['" + item.CardType + "'," + item.CardCount + "],");       
                 }
             ]);
             // Set chart options        
