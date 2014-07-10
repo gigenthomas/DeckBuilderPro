@@ -21,6 +21,11 @@ namespace DeckBuilderPro.DataManager
             _cardManager = cardManager;
         }
 
+        public List<Card> TypeAhead(string name)
+        {
+            return _cardManager.TypeAheadByName(name, 1);
+        }
+
         public int UpdateDeckCount(int deckId)
         {
             var deck = _deckDataManager.FindById(deckId);

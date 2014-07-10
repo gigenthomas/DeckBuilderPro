@@ -58,6 +58,12 @@ namespace DeckBuilderPro.Controllers
             return Json(_deckManager.UpdateDeckCount(id), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult TypeAhead(string search)
+        {
+            var results = _deckManager.TypeAhead(search);
+            return Json(results, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult DeckList2(int id)
         {
             var deckCard = new DeckCard();

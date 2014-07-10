@@ -12,5 +12,6 @@ namespace DeckBuilderPro.DataManager.Interfaces
         bool UpdateCardInDeck(string cardIdentifier, int deckId, int quantity, int quantityFromCollection);
         bool DeleteCardFromDeck(int deckCardId);
         int UpdateDeckCount(int deckId);
+        List<Card> TypeAhead(string name);
     }
 }

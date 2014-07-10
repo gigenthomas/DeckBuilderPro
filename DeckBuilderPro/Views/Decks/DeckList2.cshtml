@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "DeckList";
-    //ViewBag.Controller = "DecksController";
     ViewBag.AngularInitModule = "DeckList";
     ViewBag.Controller = "DeckList";
 }
@@ -12,8 +11,9 @@
 </div>
 
 <div ng-hide="isBusy" ng-cloak>
-    <h2>{{ data.deck.Name }} - Deck List ({{ data.deck.CardCount }})
-    
+    <h2>
+        {{ data.deck.Name }} - Deck List ({{ data.deck.CardCount }})
+
         <div class="pull-right">
             <a role="button" class="btn btn-primary" ng-click="updateDeckCount(data.deck.Id)">Fix Count</a>
             <a href="#addCardsModal" role="button" class="btn btn-primary" data-toggle="modal">Add Cards</a>
@@ -21,7 +21,6 @@
 
     </h2>
 
-    <!-- Button to trigger modal -->
     <table class="table plottwist">
         <tr>
             <th colspan="4">
@@ -146,7 +145,9 @@
                     @Html.LabelFor(model => model.CardIdentifier)
                 </div>
                 <div class="editor-field">
-                    <input type="text" name="CardIdentifier" ng-model="newCards.CardIdentifier" required />
+                    <div id="custom-templates">
+                        <input class="typeahead" type="text" id="newCardIdentifier" placeholder="Card" required>
+                    </div>                    
                     <span class="error" ng-show="newDeckForm.CardIdentifier.$error.required">*</span>
                 </div>
 
@@ -245,5 +246,31 @@
         var DeckId = @Html.Raw(ViewBag.Id);
     </script>
     <script src="~/Scripts/AngularController/DeckListController.js"></script>
-    @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/TypeAhead")
+
+
+    
+    <script type="text/javascript">
+        var cards = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            remote: {
+                url: '/Decks/TypeAhead?search=%QUERY'
+            },
+            limit:3
+        });
+ 
+        cards.initialize();
+
+        var templ =  Hogan.compile(['<p>{{Name}}-{{CardIdentifier}}</p>'].join(''));
+ 
+        $('#custom-templates .typeahead').typeahead(null, {
+            name: 'cards',
+            displayKey: 'CardIdentifier',
+            source: cards.ttAdapter(),
+            templates: {
+                suggestion: function (data) { return templ.render(data); }
+            }
+        });
+    </script>
 }

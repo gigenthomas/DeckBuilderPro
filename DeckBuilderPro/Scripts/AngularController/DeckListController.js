@@ -215,6 +215,7 @@ function DeckList($scope, $http, dataService) {
 
     $scope.addCards = function () {
         $scope.newCards.DeckId = $scope.data.deck.Id;
+        $scope.newCards.CardIdentifier = $('#newCardIdentifier').val();
 
         dataService.addCards($scope.newCards)
             .then(
