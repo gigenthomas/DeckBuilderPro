@@ -4,10 +4,25 @@ module.factory("dataService", function ($http, $filter, $q) {
 
     var _deck = [];
     var _isInit = false;
+    var _collections = [];
 
     var _isReady = function () {
         return _isInit;
     }
+
+    var _getCollections = function () {
+        var deferred = $q.defer();
+        $http.get("/api/Collections/")
+            .then(function (result) {
+                angular.copy(result.data, _collections);
+                deferred.resolve();
+            },
+            function () {
+                //Error
+                deferred.reject();
+            });
+        return deferred.promise;
+    };
 
     var _getDeck = function (DeckId) {
 
@@ -135,12 +150,14 @@ module.factory("dataService", function ($http, $filter, $q) {
 
     return {
         deck: _deck,
+        collections: _collections,
         getDeck: _getDeck,
         isReady: _isReady,
         addCards: _addCards,
         removeCards: _removeCards,
         updateCard: _updateCard,
-        updateDeckCount: _updateDeckCount
+        updateDeckCount: _updateDeckCount,
+        getCollections: _getCollections
     };
 });
 
@@ -151,6 +168,7 @@ function DeckList($scope, $http, dataService) {
     $scope.newCards = {};
     $scope.updatedCard = {};
     $scope.deleteCard = {};
+    $scope.collection = null;
 
     $scope.deck = null;
     $scope.decks = [];
@@ -175,7 +193,13 @@ function DeckList($scope, $http, dataService) {
         function () {
             //error
             alert("Could not load Deck");
-        })
+        }).then(dataService.getCollections().then(
+            function(){},
+            function () {
+                alert('Error Loading Coolection');
+            }
+            )
+        )
     .then(function () {
         $scope.isBusy = false;
     });
@@ -216,6 +240,7 @@ function DeckList($scope, $http, dataService) {
     $scope.addCards = function () {
         $scope.newCards.DeckId = $scope.data.deck.Id;
         $scope.newCards.CardIdentifier = $('#newCardIdentifier').val();
+        $scope.newCards.CollectionId = $scope.collection.Id;
 
         dataService.addCards($scope.newCards)
             .then(

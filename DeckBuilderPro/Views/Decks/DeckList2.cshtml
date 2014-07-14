@@ -165,6 +165,19 @@
                         </select>
                     </div>
                 </div>
+                <div class="checkbo">
+                    <label>
+                        <input type="checkbox" ng-model="newCards.AddToCollection" /> Add to Collection
+                    </label>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.CollectionId, new { @class = "control-label", @for = "Collections" })
+                    <div class="controls">
+                        <select name="Collection_Id" ng-model="collection" ng-options=" c.Name for c in data.collections track by c.Id" ng-disabled="newCards.AddToCollection == false || newCards.AddToCollection == undefined">
+                            <option value="">-- select Collection --</option>
+                        </select>
+                    </div>
+                </div>
 
             </div>
             <div class="modal-footer">

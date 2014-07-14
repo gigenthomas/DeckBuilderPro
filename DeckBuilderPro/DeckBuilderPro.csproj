@@ -198,6 +198,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\CollectionsController.cs" />
     <Compile Include="Controllers\Api\DeckCardsController.cs" />
     <Compile Include="Controllers\Api\DecksController.cs" />
     <Compile Include="Controllers\Api\GamesController.cs" />
