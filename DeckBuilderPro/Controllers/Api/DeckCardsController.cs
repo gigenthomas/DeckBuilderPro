@@ -61,13 +61,22 @@ namespace DeckBuilderPro.Controllers.Api
         public bool Put(DeckCardViewModel updatedDeckCard)
         {
             int cardsCheckedOutFromCollection = 0;
+            var quantityToAdd = 0;
+            if (updatedDeckCard.OldQuantity != null)
+            {
+                quantityToAdd = updatedDeckCard.Quantity - updatedDeckCard.OldQuantity;
+            }
+            else
+            {
+                quantityToAdd = updatedDeckCard.Quantity;
+            }
             if (updatedDeckCard.AddToCollection)
             {
-                _collectionsManager.AddCardsToCollection(updatedDeckCard.CollectionId, updatedDeckCard.Quantity, updatedDeckCard.CardIdentifier);
+                _collectionsManager.AddCardsToCollection(updatedDeckCard.CollectionId, quantityToAdd, updatedDeckCard.CardIdentifier);
             }
             if (updatedDeckCard.CheckoutFromCollection)
             {
-                cardsCheckedOutFromCollection = _collectionsManager.CheckCardsOutOfColection(updatedDeckCard.CollectionId, updatedDeckCard.Quantity, updatedDeckCard.CardIdentifier);
+                cardsCheckedOutFromCollection = _collectionsManager.CheckCardsOutOfColection(updatedDeckCard.CollectionId, quantityToAdd, updatedDeckCard.CardIdentifier);
             }
 
             return _decksManager.UpdateCardInDeck(updatedDeckCard.CardIdentifier, updatedDeckCard.DeckId, updatedDeckCard.Quantity, cardsCheckedOutFromCollection);

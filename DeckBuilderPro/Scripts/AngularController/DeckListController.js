@@ -162,7 +162,7 @@ module.factory("dataService", function ($http, $filter, $q) {
 });
 
 
-function DeckList($scope, $http, dataService) {
+function DeckList($scope, $http, $filter, dataService) {
     $scope.isBusy = true;
     $scope.data = dataService;
     $scope.newCards = {};
@@ -173,37 +173,6 @@ function DeckList($scope, $http, dataService) {
     $scope.deck = null;
     $scope.decks = [];
 
-    $http.get("/api/Decks")
-        .then(function (result) {
-            angular.copy(result.data, $scope.decks);
-        },
-        function () {
-            alert("Handle Error");
-        })
-        .then(function () {
-            //$scope.isBusy = false;
-        });
-
-    if (dataService.isReady() == false) {
-        dataService.getDeck(DeckId)
-            .then(function () {
-                //success
-                $scope.isBusy = true;
-            },
-        function () {
-            //error
-            alert("Could not load Deck");
-        }).then(dataService.getCollections().then(
-            function(){},
-            function () {
-                alert('Error Loading Coolection');
-            }
-            )
-        )
-    .then(function () {
-        $scope.isBusy = false;
-    });
-    }
 
     $scope.reqDeckId = function () {
         if ($scope.deck && $scope.deck.id && $scope.deck.id > 0) return true;
@@ -240,13 +209,18 @@ function DeckList($scope, $http, dataService) {
     $scope.addCards = function () {
         $scope.newCards.DeckId = $scope.data.deck.Id;
         $scope.newCards.CardIdentifier = $('#newCardIdentifier').val();
-        $scope.newCards.CollectionId = $scope.collection.Id;
+
+        if ($scope.newCards.AddToCollection == true)
+        {
+            $scope.newCards.CollectionId = $scope.collection.Id;
+        }
 
         dataService.addCards($scope.newCards)
             .then(
                 function (result) {
                     //success
                     $('#addCardsModal').modal('hide');
+                    $scope.updateChart();
                 },
                 function () {
                     //error
@@ -254,8 +228,6 @@ function DeckList($scope, $http, dataService) {
                 }
             );
     };
-
-
 
     $scope.deleteCards = function(id)
     {
@@ -283,18 +255,6 @@ function DeckList($scope, $http, dataService) {
 
         $scope.deleteCard = card;
         $('#deleteCardsModal').modal('show');
-
-        //$scope.deleteCard = null;
-        //dataService.removeCards(card.Id).then(
-        //    function () {
-                //success
-        //        $scope.data.deck.CardsInDeck.splice($scope.data.deck.CardsInDeck.indexOf(card), 1);
-        //    },
-        //    function () {
-                //error
-        //        alert("error");
-        //    }
-        // );
     };
 
     $scope.updateCard = function (card) {
@@ -309,6 +269,11 @@ function DeckList($scope, $http, dataService) {
 
     $scope.updateCards = function (card) {
         $scope.updatedCard.DeckId = $scope.data.deck.Id;
+
+        if ($scope.newCards.AddToCollection == true) {
+            $scope.updatedCard.CollectionId = $scope.collection.Id;
+        }
+
 
         dataService.updateCard($scope.updatedCard)
             .then(
@@ -325,9 +290,55 @@ function DeckList($scope, $http, dataService) {
             );
     };
 
+    $scope.reqCollectionIdAdd = function () {
+        if ($scope.newCards.AddToCollection == undefined || $scope.newCards.AddToCollection == false) return false;
+        if ($scope.newCards.AddToCollection == true && $scope.collection && $scope.collection.Id && $scope.collection.Id > 0) return false;
+        return true;
+    }
+
+    $scope.reqCollectionIdUpdate = function () {
+        if ($scope.updatedCard.AddToCollection == undefined || $scope.updatedCard.AddToCollection == false) return false;
+        if ($scope.updatedCard.AddToCollection == true && $scope.collection && $scope.collection.Id && $scope.collection.Id > 0) return false;
+        return true;
+    }
+
     $scope.updateDeckCount = function(deckId)
     {
         dataService.updateDeckCount(deckId)
     }
+
+    $scope.updateChart = function () {
+        chartData = [
+            ['Plottwists', $scope.Sum($filter('filter')($scope.data.deck.CardsInDeck, $scope.PlotTwist))],
+            ['Charaters', $scope.Sum($filter('filter')($scope.data.deck.CardsInDeck, $scope.Character))],
+            ['Equipments', $scope.Sum($filter('filter')($scope.data.deck.CardsInDeck, $scope.Equipment))],
+            ['Locations', $scope.Sum($filter('filter')($scope.data.deck.CardsInDeck, $scope.Location))]
+        ];
+        drawChart();
+    };
+
+    if (dataService.isReady() == false) {
+        dataService.getDeck(DeckId)
+            .then(function () {
+                //success
+                $scope.isBusy = true;
+            },
+        function () {
+            //error
+            alert("Could not load Deck");
+        }).then(dataService.getCollections().then(
+            function () {  },
+            function () {
+                alert('Error Loading Coolection');
+            }
+            )
+        ).then(function () {
+            $scope.isBusy = false;
+            
+        }).then(function () { $scope.updateChart(); });
+    }
+
+
+
 }
 

@@ -129,11 +129,6 @@
         </tr>
     </table>
 
-    <br />
-    <div class="pull-right"><strong>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary", @role = "button" })</strong></div>
-    <br />
-    <br />
-
     <!-- Add Cards -->
     <div id="addCardsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <form name="CardsToAddForm" novalidate ng-submit="addCards()">
@@ -165,7 +160,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="checkbo">
+                <div class="checkbox">
                     <label>
                         <input type="checkbox" ng-model="newCards.AddToCollection" /> Add to Collection
                     </label>
@@ -182,7 +177,7 @@
             </div>
             <div class="modal-footer">
                 <button id="cancel" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                <input type="submit" class="btn btn-primary" value="Add Cards" ng-disabled="CardsToAddForm.$invalid" />
+                <input type="submit" class="btn btn-primary" value="Add Cards" ng-disabled="CardsToAddForm.$invalid || reqCollectionIdAdd()" />
             </div>
         </form>
 
@@ -243,20 +238,42 @@
                         </select>
                     </div>
                 </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="updatedCard.AddToCollection" /> Add to Collection
+                    </label>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.CollectionId, new { @class = "control-label", @for = "Collections" })
+                    <div class="controls">
+                        <select name="Collection_Id" ng-model="collection" ng-options=" c.Name for c in data.collections track by c.Id" ng-disabled="updatedCard.AddToCollection == false || updatedCard.AddToCollection == undefined">
+                            <option value="">-- select Collection --</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button id="cancel" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                <input type="submit" class="btn btn-primary" value="Update Card" ng-disabled="CardToUpdateForm.$invalid" />
+                <input type="submit" class="btn btn-primary" value="Update Card" ng-disabled="CardToUpdateForm.$invalid || reqCollectionIdUpdate()" />
             </div>
         </form>
     </div>
 </div>
+
+<div id="chart_div" style="width:100%;margin: 0 auto; display:block;"></div>
+
+<br />
+<div class="pull-right"><strong>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary", @role = "button" })</strong></div>
+<br />
+<br />
+
 
 @section Scripts
 {
 
     <script type="text/javascript">
         var DeckId = @Html.Raw(ViewBag.Id);
+        var chartData = [];
     </script>
     <script src="~/Scripts/AngularController/DeckListController.js"></script>
         @Scripts.Render("~/bundles/TypeAhead")
@@ -270,7 +287,7 @@
             remote: {
                 url: '/Decks/TypeAhead?search=%QUERY'
             },
-            limit:3
+            limit:4
         });
  
         cards.initialize();
@@ -286,4 +303,35 @@
             }
         });
     </script>
+
+    <!--Google Charts-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+        // Load the Visualization API and the piechart package.
+        google.load('visualization', '1.0', { 'packages': ['corechart'] });
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(drawChart);
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Card Type');
+            data.addColumn('number', 'Cards');
+            data.addRows(chartData);
+            // Set chart options
+            var options = {
+                'title':'Deck by Card Types',
+                'width':600,
+                'height':450,
+                'backgroundColor': '#eeeeee',
+                //'is3D': true,
+                'colors': ['#04417a', '#4f0707', '#383a3b', '#034a0b']
+            };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div')); chart.draw(data, options);
+        }    </script>
+
 }

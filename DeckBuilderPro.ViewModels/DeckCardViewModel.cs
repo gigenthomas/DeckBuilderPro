@@ -14,6 +14,7 @@ namespace DeckBuilderPro.ViewModels
         public bool CheckoutFromCollection { get; set; }
         public bool AddToCollection { get; set; }
         public int Quantity { get; set; }
+        public int OldQuantity { get; set; }
         public int QuantityFromCollection { get; set; }
         public int CollectionId { get; set; }
         public CardViewModel Card { get; set; }
