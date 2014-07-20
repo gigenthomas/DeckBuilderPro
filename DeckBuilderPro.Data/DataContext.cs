@@ -7,6 +7,7 @@ using System.Data.Entity;
 using DeckBuilderPro.Data.Configuration;
 using IRepository;
 using DeckBuilderPro.Entity;
+using VsSystem = DeckBuilderPro.Data.Configuration.VsSystem;
 
 namespace DeckBuilderPro.Data
 {
@@ -54,6 +55,18 @@ namespace DeckBuilderPro.Data
             modelBuilder.Configurations.Add(new VsSystem_CardTextsConfiguration());
             modelBuilder.Configurations.Add(new VsSystem_TeamAffiliationConfiguration());
             modelBuilder.Configurations.Add(new CollectionCardConfiguration());
+            
+            //Register Vs System Model Configurations
+
+            modelBuilder.Configurations.Add(new VsSystem.CardConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.CardRarityConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.CardTypeConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.CollectionCardConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.CollectionConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.DeckCardConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.DeckConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.TeamAffiliationsConfiguration());
+        
         }
 
     }

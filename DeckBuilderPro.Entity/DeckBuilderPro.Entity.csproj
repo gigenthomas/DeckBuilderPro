@@ -53,6 +53,16 @@
     <Compile Include="Manufacturer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="VsSystem\Card.cs" />
+    <Compile Include="VsSystem\CardRarity.cs" />
+    <Compile Include="VsSystem\CardText.cs" />
+    <Compile Include="VsSystem\CardType.cs" />
+    <Compile Include="VsSystem\Collection.cs" />
+    <Compile Include="VsSystem\CollectionCard.cs" />
+    <Compile Include="VsSystem\Deck.cs" />
+    <Compile Include="VsSystem\DeckCard.cs" />
+    <Compile Include="VsSystem\Format.cs" />
+    <Compile Include="VsSystem\TeamAffiliation.cs" />
     <Compile Include="VsSystem_Card.cs" />
     <Compile Include="VsSystem_GameSet.cs" />
     <Compile Include="VsSystem_TeamAffiliation.cs" />
