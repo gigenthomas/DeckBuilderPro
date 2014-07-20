@@ -21,7 +21,7 @@ namespace DeckBuilderPro.Data.Configuration.VsSystem
                 .HasMaxLength(75);
 
             // Table & Column Mappings
-            this.ToTable("Collections");
+            this.ToTable("Collections", schemaName: "VsSystem");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.UserId).HasColumnName("UserId");
             this.Property(t => t.Name).HasColumnName("Name");
