@@ -7,9 +7,9 @@ using System.Text;
 
 namespace DeckBuilderPro.Data.Configuration.VsSystem
 {
-    class DeckConfiguration : EntityTypeConfiguration<Deck>
+    class VsSystemDeckConfiguration : EntityTypeConfiguration<VsSystemDeck>
     {
-        public DeckConfiguration()
+        public VsSystemDeckConfiguration()
         {
             // Primary Key
             this.HasKey(t => t.Id);

@@ -7,9 +7,9 @@ using System.Text;
 
 namespace DeckBuilderPro.Data.Configuration.VsSystem
 {
-    class CollectionCardConfiguration : EntityTypeConfiguration<CollectionCard>
+    class VsSystemCollectionCardConfiguration : EntityTypeConfiguration<VsSystemCollectionCard>
     {
-        public CollectionCardConfiguration()
+        public VsSystemCollectionCardConfiguration()
         {
             this.ToTable("CardsToCollection");
             this.Property(t => t.Id).HasColumnName("Id");

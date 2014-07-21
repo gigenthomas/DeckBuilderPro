@@ -70,7 +70,10 @@
     <Compile Include="ViewModelsBuilders\GameModelBuilder.cs" />
     <Compile Include="ViewModelsBuilders\ListModelBuilder.cs" />
     <Compile Include="ViewModelsBuilders\ManufacturerModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\VsSystem\VsSystemCardViewModelBuilder.cs" />
     <Compile Include="ViewModelsBuilders\VsSystem_CardModelBuilder.cs" />
+    <Compile Include="VsSystem\VsSystemCardViewModel.cs" />
+    <Compile Include="VsSystem\VsSystemTeamAffiliationViewModel.cs" />
     <Compile Include="VsSystem_CardViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

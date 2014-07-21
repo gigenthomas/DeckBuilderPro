@@ -60,6 +60,8 @@
     <Compile Include="Interfaces\ICollectionsManager.cs" />
     <Compile Include="Interfaces\IDecksManager.cs" />
     <Compile Include="DecksManagers.cs" />
+    <Compile Include="Interfaces\VsSystem\ICardsManager.cs" />
+    <Compile Include="VsSystem\CardsManager.cs" />
     <Compile Include="VsSystem_CardsDataManager.cs" />
     <Compile Include="GamesDataManager.cs" />
     <Compile Include="Interfaces\IDataManager.cs" />

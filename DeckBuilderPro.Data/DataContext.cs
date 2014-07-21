@@ -42,11 +42,11 @@ namespace DeckBuilderPro.Data
         public override void AddModelBuilderConfiguration(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Configurations.Add<Card>( new CardConfiguration());
-            modelBuilder.Configurations.Add(new CardConfiguration());
-            modelBuilder.Configurations.Add(new CardRarityConfiguration());
-            modelBuilder.Configurations.Add(new CardTypeConfiguration());
-            modelBuilder.Configurations.Add(new DeckConfiguration());
-            modelBuilder.Configurations.Add(new DeckCardConfiguration());
+            //modelBuilder.Configurations.Add(new CardConfiguration());
+            //modelBuilder.Configurations.Add(new CardRarityConfiguration());
+            //modelBuilder.Configurations.Add(new CardTypeConfiguration());
+            //modelBuilder.Configurations.Add(new DeckConfiguration());
+            //modelBuilder.Configurations.Add(new DeckCardConfiguration());
             modelBuilder.Configurations.Add(new FormatConfiguration());
             modelBuilder.Configurations.Add(new GameConfiguration());
             modelBuilder.Configurations.Add(new GamesSetConfiguration());
@@ -54,18 +54,18 @@ namespace DeckBuilderPro.Data
             modelBuilder.Configurations.Add(new VsSystem_CardConfiguration());
             modelBuilder.Configurations.Add(new VsSystem_CardTextsConfiguration());
             modelBuilder.Configurations.Add(new VsSystem_TeamAffiliationConfiguration());
-            modelBuilder.Configurations.Add(new CollectionCardConfiguration());
+            //modelBuilder.Configurations.Add(new CollectionCardConfiguration());
             
             //Register Vs System Model Configurations
 
-            modelBuilder.Configurations.Add(new VsSystem.CardConfiguration());
-            modelBuilder.Configurations.Add(new VsSystem.CardRarityConfiguration());
-            modelBuilder.Configurations.Add(new VsSystem.CardTypeConfiguration());
-            modelBuilder.Configurations.Add(new VsSystem.CollectionCardConfiguration());
-            modelBuilder.Configurations.Add(new VsSystem.CollectionConfiguration());
-            modelBuilder.Configurations.Add(new VsSystem.DeckCardConfiguration());
-            modelBuilder.Configurations.Add(new VsSystem.DeckConfiguration());
-            modelBuilder.Configurations.Add(new VsSystem.TeamAffiliationsConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.VsSystemCardConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.VsSystemCardRarityConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.VsSystemCardTypeConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.VsSystemCollectionCardConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.VsSystemCollectionConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.VsSystemDeckCardConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.VsSystemDeckConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.VsSystemTeamAffiliationsConfiguration());
         
         }
 

@@ -18,8 +18,8 @@ namespace DeckBuilderPro.Entity
         public int IsMale { get; set; }
         public virtual ICollection<Collection> Collections { get; set; }
         public ICollection<Deck> Decks { get; set; }
-        public virtual ICollection<VsSystem.Collection> VsSystemCollections { get; set; }
-        public ICollection<VsSystem.Deck> VsSystemDecks { get; set; }
+        public virtual ICollection<VsSystem.VsSystemCollection> VsSystemCollections { get; set; }
+        public ICollection<VsSystem.VsSystemDeck> VsSystemDecks { get; set; }
 
     }
 }

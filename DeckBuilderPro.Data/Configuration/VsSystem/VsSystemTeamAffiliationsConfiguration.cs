@@ -7,9 +7,9 @@ using System.Text;
 
 namespace DeckBuilderPro.Data.Configuration.VsSystem
 {
-    public class TeamAffiliationsConfiguration : EntityTypeConfiguration<TeamAffiliation>
+    public class VsSystemTeamAffiliationsConfiguration : EntityTypeConfiguration<VsSystemTeamAffiliation>
     {
-        public TeamAffiliationsConfiguration()
+        public VsSystemTeamAffiliationsConfiguration()
         {
             // Primary Key
             this.HasKey(t => t.Id);

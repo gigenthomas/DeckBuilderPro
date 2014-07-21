@@ -7,9 +7,9 @@ using System.Text;
 
 namespace DeckBuilderPro.Data.Configuration.VsSystem
 {
-    class DeckCardConfiguration : EntityTypeConfiguration<DeckCard>
+    class VsSystemDeckCardConfiguration : EntityTypeConfiguration<VsSystemDeckCard>
     {
-        public DeckCardConfiguration()
+        public VsSystemDeckCardConfiguration()
         {
 
             // Primary Key

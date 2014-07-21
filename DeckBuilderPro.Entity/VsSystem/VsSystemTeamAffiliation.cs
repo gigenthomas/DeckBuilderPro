@@ -6,14 +6,14 @@ using System.Text;
 
 namespace DeckBuilderPro.Entity.VsSystem
 {
-    public class CardType : BaseEntity
+    public class VsSystemTeamAffiliation : BaseEntity
     {
-        public CardType()
+        public VsSystemTeamAffiliation()
         {
-            this.Cards = new List<Card>();
+            this.Cards = new List<VsSystemCard>();
         }
 
         public string Name { get; set; }
-        public ICollection<Card> Cards { get; set; }
+        public virtual ICollection<VsSystemCard> Cards { get; set; }
     }
 }

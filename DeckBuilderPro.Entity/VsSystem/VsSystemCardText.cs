@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DeckBuilderPro.Entity.VsSystem
 {
-    public class CardText : BaseEntity
+    public class VsSystemCardText : BaseEntity
     {
         public string RulesText { get; set; }
         public string FlavourText { get; set; }

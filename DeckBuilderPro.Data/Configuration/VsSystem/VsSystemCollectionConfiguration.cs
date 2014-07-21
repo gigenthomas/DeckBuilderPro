@@ -7,22 +7,30 @@ using System.Text;
 
 namespace DeckBuilderPro.Data.Configuration.VsSystem
 {
-    class CardTypeConfiguration : EntityTypeConfiguration<CardType>
+    public class VsSystemCollectionConfiguration : EntityTypeConfiguration<VsSystemCollection>
     {
-        public CardTypeConfiguration()
+        public VsSystemCollectionConfiguration()
         {
+
             // Primary Key
             this.HasKey(t => t.Id);
 
             // Properties
             this.Property(t => t.Name)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(75);
 
             // Table & Column Mappings
-            this.ToTable("CardTypes", schemaName: "VsSystem");
+            this.ToTable("Collections", schemaName: "VsSystem");
             this.Property(t => t.Id).HasColumnName("Id");
+            this.Property(t => t.UserId).HasColumnName("UserId");
             this.Property(t => t.Name).HasColumnName("Name");
+
+            // Relationships
+            this.HasRequired(t => t.User)
+                .WithMany(t => t.VsSystemCollections)
+                .HasForeignKey(d => d.UserId);
+
 
         }
     }

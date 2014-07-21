@@ -6,15 +6,15 @@ using System.Text;
 
 namespace DeckBuilderPro.Entity.VsSystem
 {
-    public class CardRarity : BaseEntity
+    public class VsSystemCardRarity : BaseEntity
     {
-        public CardRarity()
+        public VsSystemCardRarity()
         {
-            this.Cards = new List<Card>();
+            this.Cards = new List<VsSystemCard>();
         }
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public ICollection<Card> Cards { get; set; }
+        public ICollection<VsSystemCard> Cards { get; set; }
     }
 }

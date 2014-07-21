@@ -2,10 +2,13 @@
 using DeckBuilderPro.DataManager;
 using DeckBuilderPro.DataManager.Interfaces;
 using DeckBuilderPro.Entity;
+using DeckBuilderPro.Entity.VsSystem;
 using DeckBuilderPro.Mapper;
 using DeckBuilderPro.ViewModels;
 using DeckBuilderPro.ViewModels.Interfaces;
 using DeckBuilderPro.ViewModels.ViewModelsBuilders;
+using DeckBuilderPro.ViewModels.ViewModelsBuilders.VsSystem;
+using DeckBuilderPro.ViewModels.VsSystem;
 using IMapping;
 using IRepository;
 using Microsoft.Practices.Unity;
@@ -16,6 +19,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Enums = DeckBuilderPro.Entity.Enums;
+using VsSystemDataManager = DeckBuilderPro.DataManager.VsSystem;
+using VsSystemDataManagerInterface = DeckBuilderPro.DataManager.Interfaces.VsSystem;
 
 namespace DeckBuilderPro.Unity
 {
@@ -29,6 +34,7 @@ namespace DeckBuilderPro.Unity
                .RegisterType<IUnitOfWork, UnitOfWork>()
                 //.RegisterType(typeof(IMapper<,>), typeof(ViewModelMapper<,>))
                .RegisterType<IMapper<Deck, DeckViewModel>, DeckViewModelMapper>()
+               .RegisterType<IMapper<VsSystemCard, VsSystemCardViewModel>, VsSystemCardViewModelMapper>()
                 //.RegisterType<IMapper<DeckCard, DeckCardViewModel>, DeckCardViewModelMapper>()               
                .RegisterType(typeof(IMapper<,>), typeof(GenericViewModelMapper<,>))
                .RegisterType(typeof(IListViewModel<>), typeof(ListViewModel<>))
@@ -52,6 +58,8 @@ namespace DeckBuilderPro.Unity
                .RegisterType<IModelBuilder<Deck, DropDownListItemViewModel>, DropDownListItemViewModelBuilder<Deck>>()
                .RegisterType<ICollectionsManager, CollectionsManager>()
                .RegisterType<ICardsManager, CardsManager>()
+               .RegisterType<VsSystemDataManagerInterface.ICardsManager, VsSystemDataManager.CardsManager>()
+               .RegisterType <IModelBuilder<VsSystemCard, VsSystemCardViewModel>, VsSystemCardViewModelBuilder>()
                .RegisterType<ICollectionsManager, CollectionsManager>()
                .RegisterType<IDecksManager, DecksManager>()
                 ;

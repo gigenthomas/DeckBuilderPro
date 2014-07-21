@@ -6,21 +6,20 @@ using System.Text;
 
 namespace DeckBuilderPro.Entity.VsSystem
 {
-    public class Card : BaseEntity
+    public class VsSystemCard : BaseEntity
     {
-        public Card()
+        public VsSystemCard()
         {
-            this.CardText = new List<CardText>();
-            this.TeamAffiliations = new List<TeamAffiliation>();
+            this.CardText = new List<VsSystemCardText>();
+            this.TeamAffiliations = new List<VsSystemTeamAffiliation>();
 
         }
 
         public string Name { get; set; }
         public int CardTypeId { get; set; }
-        public int GameId { get; set; }
         public string CardIdentifier { get; set; }
         public bool IsReprint { get; set; }
-        public CardType CardType { get; set; }
+        public VsSystemCardType CardType { get; set; }
         public string Version { get; set; }
         public int Cost { get; set; }
         public int Attack { get; set; }
@@ -29,11 +28,11 @@ namespace DeckBuilderPro.Entity.VsSystem
         public bool HasRange { get; set; }
         public bool IsOngoing { get; set; }
         public int RarityId { get; set; }
-        public CardRarity CardRarity { get; set; }
-        public ICollection<CardText> CardText { get; set; }
-        public ICollection<TeamAffiliation> TeamAffiliations { get; set; }
-        public ICollection<DeckCard> CardsInDeck { get; set; }
-        public ICollection<CollectionCard> CardsInCollection { get; set; }
+        public VsSystemCardRarity CardRarity { get; set; }
+        public ICollection<VsSystemCardText> CardText { get; set; }
+        public ICollection<VsSystemTeamAffiliation> TeamAffiliations { get; set; }
+        public ICollection<VsSystemDeckCard> CardsInDeck { get; set; }
+        public ICollection<VsSystemCollectionCard> CardsInCollection { get; set; }
 
     }
 }

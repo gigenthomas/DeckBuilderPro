@@ -6,11 +6,11 @@ using System.Text;
 
 namespace DeckBuilderPro.Entity.VsSystem
 {
-    public class Deck : BaseEntity
+    public class VsSystemDeck : BaseEntity
     {
-        public Deck()
+        public VsSystemDeck()
         {
-            this.CardsInDeck = new List<DeckCard>();
+            this.CardsInDeck = new List<VsSystemDeckCard>();
         }
 
         public string Name { get; set; }
@@ -18,8 +18,8 @@ namespace DeckBuilderPro.Entity.VsSystem
         public int CardCount { get; set; }
         public int GameId { get; set; }
         public Nullable<int> FormatId { get; set; }
-        public ICollection<DeckCard> CardsInDeck { get; set; }
-        public Format Format { get; set; }
+        public ICollection<VsSystemDeckCard> CardsInDeck { get; set; }
+        public VsSystemFormat Format { get; set; }
         public Game Game { get; set; }
         public User User { get; set; }
 

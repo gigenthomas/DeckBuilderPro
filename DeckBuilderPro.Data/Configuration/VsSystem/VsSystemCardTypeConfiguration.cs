@@ -7,9 +7,9 @@ using System.Text;
 
 namespace DeckBuilderPro.Data.Configuration.VsSystem
 {
-    class CardRarityConfiguration : EntityTypeConfiguration<CardRarity>
+    class VsSystemCardTypeConfiguration : EntityTypeConfiguration<VsSystemCardType>
     {
-        public CardRarityConfiguration()
+        public VsSystemCardTypeConfiguration()
         {
             // Primary Key
             this.HasKey(t => t.Id);
@@ -19,14 +19,10 @@ namespace DeckBuilderPro.Data.Configuration.VsSystem
                 .IsRequired()
                 .HasMaxLength(50);
 
-            this.Property(t => t.Description)
-                .HasMaxLength(500);
-
             // Table & Column Mappings
-            this.ToTable("CardRarities", schemaName: "VsSystem");
+            this.ToTable("CardTypes", schemaName: "VsSystem");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Name).HasColumnName("Name");
-            this.Property(t => t.Description).HasColumnName("Description");
 
         }
     }
