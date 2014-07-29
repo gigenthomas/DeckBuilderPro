@@ -8,11 +8,11 @@ using VsSystemEntity = DeckBuilderPro.Entity.VsSystem;
 
 namespace DeckBuilderPro.DataManager.VsSystem
 {
-    public class CardsManager : ICardsManager
+    public class VsSystemCardsManager : IVsSystemCardsManager
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CardsManager(IUnitOfWork unitOfWork)
+        public VsSystemCardsManager(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -38,7 +38,8 @@ namespace DeckBuilderPro.DataManager.VsSystem
         {
             int total = 0;
             var repository = _unitOfWork.Repository<VsSystemEntity.VsSystemCard>();
-            var query = repository.Query().Filter(c => c.Name.StartsWith(name)).OrderBy(c => c.OrderBy(p => p.Name)).Include(c => c.TeamAffiliations);
+            var query = repository.Query().Filter(c => c.Name.StartsWith(name)).OrderBy(c => c.OrderBy(p => p.Name)).Include(c => c.TeamAffiliations).Include(c => c.CardType)
+                .Include(c=> c.CardRarity).Include(c => c.CardText);
             return query.GetPage(1, 10, out total).ToList();        
         }
 

@@ -35,6 +35,7 @@ namespace DeckBuilderPro.Unity
                 //.RegisterType(typeof(IMapper<,>), typeof(ViewModelMapper<,>))
                .RegisterType<IMapper<Deck, DeckViewModel>, DeckViewModelMapper>()
                .RegisterType<IMapper<VsSystemCard, VsSystemCardViewModel>, VsSystemCardViewModelMapper>()
+               .RegisterType<IMapper<VsSystemDeck, VsSystemDeckViewModel>, VsSystemDeckViewModelMapper>()
                 //.RegisterType<IMapper<DeckCard, DeckCardViewModel>, DeckCardViewModelMapper>()               
                .RegisterType(typeof(IMapper<,>), typeof(GenericViewModelMapper<,>))
                .RegisterType(typeof(IListViewModel<>), typeof(ListViewModel<>))
@@ -56,12 +57,23 @@ namespace DeckBuilderPro.Unity
                .RegisterType<IDataManager<DeckCard, Enums.DeckCardEntities>, DeckCardsDataManager>()
                .RegisterType<IModelBuilder<DeckCard, DeckCardViewModel>, DeckCardViewModelBuilder>()
                .RegisterType<IModelBuilder<Deck, DropDownListItemViewModel>, DropDownListItemViewModelBuilder<Deck>>()
+               .RegisterType<IModelBuilder<VsSystemCard, VsSystemCardViewModel>, VsSystemCardViewModelBuilder>()
+               .RegisterType<IModelBuilder<VsSystemCollection, VsSystemCollectionViewModel>, VsSystemCollectionViewModelBuilder>()
+               .RegisterType<IModelBuilder<VsSystemCollectionCard, VsSystemCollectionCardViewModel>, VsSystemCollectionCardViewModelBuilder>()
+               .RegisterType<IModelBuilder<VsSystemDeckCard, VsSystemDeckCardViewModel>, VsSystemDeckCardViewModelBuilder>()
+               .RegisterType<IModelBuilder<VsSystemDeck, VsSystemDeckViewModel>, VsSystemDeckViewModelBuilder>()
+ 
                .RegisterType<ICollectionsManager, CollectionsManager>()
                .RegisterType<ICardsManager, CardsManager>()
-               .RegisterType<VsSystemDataManagerInterface.ICardsManager, VsSystemDataManager.CardsManager>()
-               .RegisterType <IModelBuilder<VsSystemCard, VsSystemCardViewModel>, VsSystemCardViewModelBuilder>()
+               .RegisterType<VsSystemDataManagerInterface.IVsSystemCardsManager, VsSystemDataManager.VsSystemCardsManager>()
+               .RegisterType<VsSystemDataManagerInterface.IVsSystemCollectionCardsManager, VsSystemDataManager.VsSystemCollectionCardsManager>()
+               .RegisterType<VsSystemDataManagerInterface.IVsSystemCollectionsManager, VsSystemDataManager.VsSystemCollectionsManager>()
+               .RegisterType<VsSystemDataManagerInterface.IVsSystemDeckCardsManager, VsSystemDataManager.VsSystemDeckCardManager>()
+               .RegisterType<VsSystemDataManagerInterface.IVsSystemDecksManager, VsSystemDataManager.VsSystemDecksManager>()
+               .RegisterType<IModelBuilder<VsSystemCard, VsSystemCardViewModel>, VsSystemCardViewModelBuilder>()
                .RegisterType<ICollectionsManager, CollectionsManager>()
                .RegisterType<IDecksManager, DecksManager>()
+
                 ;
 
             return container;

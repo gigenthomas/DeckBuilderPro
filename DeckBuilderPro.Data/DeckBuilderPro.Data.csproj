@@ -61,6 +61,7 @@
     <Compile Include="Configuration\UserConfiguration.cs" />
     <Compile Include="Configuration\VsSystem\VsSystemCardConfiguration.cs" />
     <Compile Include="Configuration\VsSystem\VsSystemCardRarityConfiguration.cs" />
+    <Compile Include="Configuration\VsSystem\VsSystemCardTextConfiguration.cs" />
     <Compile Include="Configuration\VsSystem\VsSystemCardTypeConfiguration.cs" />
     <Compile Include="Configuration\VsSystem\VsSystemCollectionCardConfiguration.cs" />
     <Compile Include="Configuration\VsSystem\VsSystemCollectionConfiguration.cs" />

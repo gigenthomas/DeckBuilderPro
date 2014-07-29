@@ -56,6 +56,7 @@
     <Compile Include="BaseViewModelMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VsSystemCardViewModelMapper.cs" />
+    <Compile Include="VsSystemDeckViewModelMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DeckBuilderPro.Entity\DeckBuilderPro.Entity.csproj">

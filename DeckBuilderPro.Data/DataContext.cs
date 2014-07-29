@@ -41,12 +41,12 @@ namespace DeckBuilderPro.Data
         }
         public override void AddModelBuilderConfiguration(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Configurations.Add<Card>( new CardConfiguration());
-            //modelBuilder.Configurations.Add(new CardConfiguration());
-            //modelBuilder.Configurations.Add(new CardRarityConfiguration());
-            //modelBuilder.Configurations.Add(new CardTypeConfiguration());
-            //modelBuilder.Configurations.Add(new DeckConfiguration());
-            //modelBuilder.Configurations.Add(new DeckCardConfiguration());
+            //modelBuilder.Configurations.Add<Card>(new CardConfiguration());
+            modelBuilder.Configurations.Add(new CardConfiguration());
+            modelBuilder.Configurations.Add(new CardRarityConfiguration());
+            modelBuilder.Configurations.Add(new CardTypeConfiguration());
+            modelBuilder.Configurations.Add(new DeckConfiguration());
+            modelBuilder.Configurations.Add(new DeckCardConfiguration());
             modelBuilder.Configurations.Add(new FormatConfiguration());
             modelBuilder.Configurations.Add(new GameConfiguration());
             modelBuilder.Configurations.Add(new GamesSetConfiguration());
@@ -66,6 +66,7 @@ namespace DeckBuilderPro.Data
             modelBuilder.Configurations.Add(new VsSystem.VsSystemDeckCardConfiguration());
             modelBuilder.Configurations.Add(new VsSystem.VsSystemDeckConfiguration());
             modelBuilder.Configurations.Add(new VsSystem.VsSystemTeamAffiliationsConfiguration());
+            modelBuilder.Configurations.Add(new VsSystem.VsSystemCardTextsConfiguration());
         
         }
 

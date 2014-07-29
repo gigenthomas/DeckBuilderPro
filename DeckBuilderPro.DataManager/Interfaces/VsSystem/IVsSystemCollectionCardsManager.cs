@@ -3,12 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Enums = DeckBuilderPro.Entity.Enums;
 
 namespace DeckBuilderPro.DataManager.Interfaces.VsSystem
 {
-    public interface ICardsManager
+    public interface IVsSystemCollectionCardsManager : IDataManager<VsSystemCollectionCard, Enums.VsSystemCollectionCardEntities>
     {
-        VsSystemCard LookupCard(string cardIdentifier);
-        ICollection<VsSystemCard> TypeAheadByName(string name);
     }
 }

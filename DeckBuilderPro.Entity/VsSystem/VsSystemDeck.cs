@@ -16,11 +16,9 @@ namespace DeckBuilderPro.Entity.VsSystem
         public string Name { get; set; }
         public int UserId { get; set; }
         public int CardCount { get; set; }
-        public int GameId { get; set; }
         public Nullable<int> FormatId { get; set; }
         public ICollection<VsSystemDeckCard> CardsInDeck { get; set; }
         public VsSystemFormat Format { get; set; }
-        public Game Game { get; set; }
         public User User { get; set; }
 
     }

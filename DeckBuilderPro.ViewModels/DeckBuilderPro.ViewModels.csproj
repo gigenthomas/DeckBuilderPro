@@ -71,8 +71,19 @@
     <Compile Include="ViewModelsBuilders\ListModelBuilder.cs" />
     <Compile Include="ViewModelsBuilders\ManufacturerModelBuilder.cs" />
     <Compile Include="ViewModelsBuilders\VsSystem\VsSystemCardViewModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\VsSystem\VsSystemCollectionCardViewModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\VsSystem\VsSystemCollectionViewModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\VsSystem\VsSystemDeckCardViewModelBuilder.cs" />
+    <Compile Include="ViewModelsBuilders\VsSystem\VsSystemDeckViewModelBuilder.cs" />
     <Compile Include="ViewModelsBuilders\VsSystem_CardModelBuilder.cs" />
+    <Compile Include="VsSystem\VsSystemCardRarityViewModel.cs" />
+    <Compile Include="VsSystem\VsSystemCardTextViewModel.cs" />
+    <Compile Include="VsSystem\VsSystemCardTypeViewModel.cs" />
     <Compile Include="VsSystem\VsSystemCardViewModel.cs" />
+    <Compile Include="VsSystem\VsSystemCollectionCardViewModel.cs" />
+    <Compile Include="VsSystem\VsSystemCollectionViewModel.cs" />
+    <Compile Include="VsSystem\VsSystemDeckCardViewModel.cs" />
+    <Compile Include="VsSystem\VsSystemDeckViewModel.cs" />
     <Compile Include="VsSystem\VsSystemTeamAffiliationViewModel.cs" />
     <Compile Include="VsSystem_CardViewModel.cs" />
   </ItemGroup>

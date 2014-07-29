@@ -25,7 +25,6 @@ namespace DeckBuilderPro.Data.Configuration.VsSystem
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.UserId).HasColumnName("UserId");
             this.Property(t => t.CardCount).HasColumnName("CardCount");
-            this.Property(t => t.GameId).HasColumnName("GameId");
             this.Property(t => t.FormatId).HasColumnName("FormatId");
 
             // Relationships

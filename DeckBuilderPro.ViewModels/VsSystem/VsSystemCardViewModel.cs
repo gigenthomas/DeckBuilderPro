@@ -19,7 +19,7 @@ namespace DeckBuilderPro.ViewModels.VsSystem
         public int CardTypeId { get; set; }
         public string CardIdentifier { get; set; }
         public bool IsReprint { get; set; }
-        //public VsSystemCardType CardType { get; set; }
+        public VsSystemCardTypeViewModel CardType { get; set; }
         public string Version { get; set; }
         public int Cost { get; set; }
         public int Attack { get; set; }
@@ -28,8 +28,8 @@ namespace DeckBuilderPro.ViewModels.VsSystem
         public bool HasRange { get; set; }
         public bool IsOngoing { get; set; }
         public int RarityId { get; set; }
-        //public VsSystemCardRarity CardRarity { get; set; }
-        //public ICollection<VsSystemCardText> CardText { get; set; }
+        public VsSystemCardRarityViewModel CardRarity { get; set; }
+        public ICollection<VsSystemCardTextViewModel> CardText { get; set; }
         public ICollection<VsSystemTeamAffiliationViewModel> TeamAffiliations { get; set; }
         //public ICollection<VsSystemDeckCard> CardsInDeck { get; set; }
         //public ICollection<VsSystemCollectionCard> CardsInCollection { get; set; }

@@ -18,12 +18,12 @@ namespace DeckBuilderPro.Controllers
         private readonly IModelBuilder<VsSystem_Card, VsSystem_CardViewModel> _modelBuilder;
         private readonly IListModelBuilder<VsSystem_CardViewModel> _listModelBuilder;
         private readonly IDataManager<VsSystem_Card, Enums.VsSystem_CardEnities> _dataManager;
-        private readonly DeckBuilderPro.DataManager.Interfaces.VsSystem.ICardsManager _newDataManager;
+        private readonly DeckBuilderPro.DataManager.Interfaces.VsSystem.IVsSystemCardsManager _newDataManager;
         private readonly IModelBuilder<VsSystemCard, VsSystemCardViewModel> _VsSystemCardModelBuilder;
         
 
         public VsSystemController(IDataManager<VsSystem_Card, Enums.VsSystem_CardEnities> dataManager, IModelBuilder<VsSystem_Card, VsSystem_CardViewModel> modelBuilder, IListModelBuilder<VsSystem_CardViewModel> listModelBulder,
-            DeckBuilderPro.DataManager.Interfaces.VsSystem.ICardsManager newDataManager, IModelBuilder<VsSystemCard, VsSystemCardViewModel> vsSystemCardModelBuilder
+            DeckBuilderPro.DataManager.Interfaces.VsSystem.IVsSystemCardsManager newDataManager, IModelBuilder<VsSystemCard, VsSystemCardViewModel> vsSystemCardModelBuilder
             )
         {
             _dataManager = dataManager;

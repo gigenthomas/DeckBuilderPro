@@ -20,6 +20,26 @@ namespace DeckBuilderPro.Entity.Enums
         GameSet
     }
 
+    public enum VsSystemDeckEntities
+    {
+
+    }
+
+    public enum VsSystemCollectionCardEntities
+    {
+
+    }
+
+    public enum  VsSystemCollectionEntities
+    {
+
+    }
+
+    public enum VsSystemDeckCardEntities
+    {
+
+    }
+
     public enum ManufactuerEnities
     {
         CardRarity,

@@ -1,15 +1,15 @@
-﻿using IRepository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace DeckBuilderPro.Entity.VsSystem
+namespace DeckBuilderPro.ViewModels.VsSystem
 {
-    public class VsSystemCardText : BaseEntity
+    public class VsSystemCardTextViewModel
     {
+        public int Id { get; set; }
         public string RulesText { get; set; }
         public string FlavourText { get; set; }
-        public VsSystemCard Card { get; set; }
     }
 }

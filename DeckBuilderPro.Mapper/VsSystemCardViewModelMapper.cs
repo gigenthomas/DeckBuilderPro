@@ -14,7 +14,9 @@ namespace DeckBuilderPro.Mapper
         {
             AutoMapper.Mapper.CreateMap<VsSystemCard, VsSystemCardViewModel>();
             AutoMapper.Mapper.CreateMap<VsSystemTeamAffiliation, VsSystemTeamAffiliationViewModel>();
-
+            AutoMapper.Mapper.CreateMap<VsSystemCardType, VsSystemCardTypeViewModel>();
+            AutoMapper.Mapper.CreateMap<VsSystemCardRarity, VsSystemCardRarityViewModel>();
+            AutoMapper.Mapper.CreateMap<VsSystemCardText, VsSystemCardTextViewModel>();
         }
     }
 }

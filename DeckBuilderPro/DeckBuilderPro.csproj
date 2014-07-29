@@ -202,6 +202,9 @@
     <Compile Include="Controllers\Api\DeckCardsController.cs" />
     <Compile Include="Controllers\Api\DecksController.cs" />
     <Compile Include="Controllers\Api\GamesController.cs" />
+    <Compile Include="Controllers\Api\VsSystemCollectionsController.cs" />
+    <Compile Include="Controllers\Api\VsSystemDeckCardsController.cs" />
+    <Compile Include="Controllers\Api\VsSystemDecksController.cs" />
     <Compile Include="Controllers\CollectionCardsController.cs" />
     <Compile Include="Controllers\CollectionsController.cs" />
     <Compile Include="Controllers\DeckCardsController.cs" />
