@@ -20,7 +20,7 @@ namespace DeckBuilderPro.DataManager.VsSystem
             _cardManager = cardManager;
         }
 
-        public Entity.VsSystem.VsSystemDeckCard AddCardsToDeck(string cardIdentifier, int deckId, int quantity, int quantityFromCollection)
+        public VsSystemDeckCard AddCardsToDeck(string cardIdentifier, int deckId, int quantity, int quantityFromCollection)
         {
             try
             {
@@ -44,8 +44,9 @@ namespace DeckBuilderPro.DataManager.VsSystem
                     myDCard.CardsFromCollection = quantityFromCollection;
                     deckCardRepository.Insert(myDCard);
                     deck.CardCount += quantity;
-                    myDCard = deckCardRepository.FindById(myDCard.Id);
                     deckRepository.Update(deck);
+                    _unitOfWork.Commit();
+                    myDCard = deckCardRepository.FindById(myDCard.Id);
                 }
                 else
                 {
@@ -54,6 +55,7 @@ namespace DeckBuilderPro.DataManager.VsSystem
                     deck.CardCount += quantity;
                     deckCardRepository.Update(myDCard);
                     deckRepository.Update(deck);
+                    _unitOfWork.Commit();
                 }
                 return myDCard;
             }
@@ -96,6 +98,7 @@ namespace DeckBuilderPro.DataManager.VsSystem
                     myDCard.CardsFromCollection = quantityFromCollection;
                     deckCardRepository.Update(myDCard);
                     deckRepository.Update(deck);
+                    _unitOfWork.Commit();
                 }
                 return true;
             }
@@ -126,6 +129,7 @@ namespace DeckBuilderPro.DataManager.VsSystem
                     deck.CardCount -= myDCard.CardCount;
                     deckCardRepository.Delete(deckCardId);
                     deckRepository.Update(deck);
+                    _unitOfWork.Commit();
                 }
                 return true;
             }
@@ -141,6 +145,7 @@ namespace DeckBuilderPro.DataManager.VsSystem
             var deck = repository.FindById(deckId);
             deck.CardCount = deck.CardsInDeck.Sum(cid => cid.CardCount);
             repository.Update(deck);
+            _unitOfWork.Commit();
             return deck.CardCount;
         }
 

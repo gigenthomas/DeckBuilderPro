@@ -11,7 +11,7 @@ namespace DeckBuilderPro.Data.Configuration.VsSystem
     {
         public VsSystemCollectionCardConfiguration()
         {
-            this.ToTable("CardsToCollection");
+            this.ToTable("CardsToCollection", schemaName: "VsSystem");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.CardId).HasColumnName("CardId");
             this.Property(t => t.CollectionId).HasColumnName("CollectionId");

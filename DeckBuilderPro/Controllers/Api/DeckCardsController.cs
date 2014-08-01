@@ -62,17 +62,21 @@ namespace DeckBuilderPro.Controllers.Api
         {
             int cardsCheckedOutFromCollection = 0;
             var quantityToAdd = 0;
-            if (updatedDeckCard.OldQuantity != null)
-            {
-                quantityToAdd = updatedDeckCard.Quantity - updatedDeckCard.OldQuantity;
-            }
-            else
-            {
-                quantityToAdd = updatedDeckCard.Quantity;
-            }
+            quantityToAdd = updatedDeckCard.Quantity - updatedDeckCard.OldQuantity;
+            //if (updatedDeckCard.OldQuantity != null)
+            //{
+            //    quantityToAdd = updatedDeckCard.Quantity - updatedDeckCard.OldQuantity;
+            //}
+            //else
+            //{
+            //    quantityToAdd = updatedDeckCard.Quantity;
+            //}
             if (updatedDeckCard.AddToCollection)
             {
-                _collectionsManager.AddCardsToCollection(updatedDeckCard.CollectionId, quantityToAdd, updatedDeckCard.CardIdentifier);
+                if(quantityToAdd > 0)
+                {
+                    _collectionsManager.AddCardsToCollection(updatedDeckCard.CollectionId, quantityToAdd, updatedDeckCard.CardIdentifier);
+                }
             }
             if (updatedDeckCard.CheckoutFromCollection)
             {

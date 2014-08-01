@@ -13,6 +13,7 @@ namespace DeckBuilderPro.ViewModels.VsSystem
             this.CardsInCollection = new List<VsSystemCollectionCardViewModel>();
         }
 
+        public int Id { get; set; }
         public int UserId { get; set; }
         public string Name { get; set; }
         public ICollection<VsSystemCollectionCardViewModel> CardsInCollection { get; set; }

@@ -12,7 +12,7 @@ namespace DeckBuilderPro.ViewModels.VsSystem
         public int CollectionId { get; set; }
         public int CardCount { get; set; }
         public int CardsInDecks { get; set; }
-        public VsSystemCollectionViewModel Collection { get; set; }
+        //public VsSystemCollectionViewModel Collection { get; set; }
         public VsSystemCardViewModel Card { get; set; }
     }
 }

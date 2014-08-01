@@ -12,17 +12,17 @@ namespace DeckBuilderPro
         {
             config.Routes.MapHttpRoute(
                 name: "VsSystemDeck",
-                routeTemplate: "api/VsSystem/Deck/{id}",
+                routeTemplate: "api/VsSystem/Decks/{id}",
                 defaults: new { Controller = "VsSystemDecks", id = RouteParameter.Optional }
             );
             config.Routes.MapHttpRoute(
                 name: "VsSystemDeckCard",
-                routeTemplate: "api/VsSystem/DeckCard/{id}",
+                routeTemplate: "api/VsSystem/DeckCards/{id}",
                 defaults: new { Controller = "VsSystemDeckCards", id = RouteParameter.Optional }
             );
             config.Routes.MapHttpRoute(
                 name: "VsSystemCollection",
-                routeTemplate: "api/VsSystem/Collection/{id}",
+                routeTemplate: "api/VsSystem/Collections/{id}",
                 defaults: new { Controller = "VsSystemCollections", id = RouteParameter.Optional }
             );
             config.Routes.MapHttpRoute(

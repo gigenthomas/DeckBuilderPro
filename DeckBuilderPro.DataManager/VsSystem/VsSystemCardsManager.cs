@@ -22,7 +22,7 @@ namespace DeckBuilderPro.DataManager.VsSystem
             var repository = _unitOfWork.Repository<VsSystemEntity.VsSystemCard>();
             var query = repository.Query();
             
-            query = query.Filter(c => c.CardIdentifier.ToUpper() == cardIdentifier.ToUpper());
+            query = query.Filter(c => c.CardIdentifier.ToUpper() == cardIdentifier.ToUpper()).Include(c => c.CardText);
             var card = query.Get().FirstOrDefault();
             
             //var cardRepository = new DeckBuilderPro.DataManager.VsSystem_CardsDataManager(new Repository.UnitOfWork());

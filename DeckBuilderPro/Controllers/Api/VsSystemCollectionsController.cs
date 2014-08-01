@@ -30,5 +30,13 @@ namespace DeckBuilderPro.Controllers.Api
             var collections = _vsSystemCollectionsManager.GetAll();
             return _modelBuilder.CreateFrom(collections);
         }
+
+        public VsSystemCollectionViewModel Get(int id)
+        {
+            var collection = _vsSystemCollectionsManager.FindById(id);
+            var collectionModel = _modelBuilder.CreateFrom(collection);
+            return collectionModel;
+        }
+
     }
 }

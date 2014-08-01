@@ -12,7 +12,7 @@ module.factory("dataService", function ($http, $filter, $q) {
 
     var _getCollections = function () {
         var deferred = $q.defer();
-        $http.get("/api/Collections/")
+        $http.get("/api/VsSystem/Collections/")
             .then(function (result) {
                 angular.copy(result.data, _collections);
                 deferred.resolve();
@@ -28,7 +28,7 @@ module.factory("dataService", function ($http, $filter, $q) {
 
         var deferred = $q.defer();
 
-        $http.get("/api/Decks/" + DeckId)
+        $http.get("/api/VsSystem/Decks/" + DeckId)
             .then(function (result) {
                 angular.copy(result.data, _deck);
                 _isInit = true;
@@ -45,7 +45,7 @@ module.factory("dataService", function ($http, $filter, $q) {
     var _addCards = function (newCards) {
         var deffered = $q.defer();
 
-        $http.post("/api/DeckCards", newCards)
+        $http.post("/api/VsSystemDeckCards/", newCards)
             .then(
                 function (result) {
                     //success
@@ -82,7 +82,7 @@ module.factory("dataService", function ($http, $filter, $q) {
     var _removeCards = function (id) {
         var deffered = $q.defer();
 
-        $http.delete("/api/DeckCards/" + id)
+        $http.delete("/api/VsSystem/DeckCards/" + id)
             .then(
                 function (result) {
                     //success
@@ -103,7 +103,7 @@ module.factory("dataService", function ($http, $filter, $q) {
     var _updateCard = function (updatedCard) {
         var deffered = $q.defer();
 
-        $http.put("/api/DeckCards", updatedCard)
+        $http.put("/api/VsSystem/DeckCards", updatedCard)
             .then(
                 function (result) {
                     //success
@@ -270,7 +270,7 @@ function DeckList($scope, $http, $filter, dataService) {
     $scope.updateCards = function (card) {
         $scope.updatedCard.DeckId = $scope.data.deck.Id;
 
-        if ($scope.newCards.AddToCollection == true) {
+        if ($scope.updatedCard.AddToCollection == true) {
             $scope.updatedCard.CollectionId = $scope.collection.Id;
         }
 
